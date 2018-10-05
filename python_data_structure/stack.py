@@ -7,14 +7,17 @@ class Stack(object):
     def __init__(self, *args):
         self.__list = list(args)
 
-    def __str__(self):
-        return str(self.__list)
+    def __repr__(self):
+        return repr(self.__list)
+
+    def __len__(self):
+        return len(self.__list)
 
     def push(self, item):
         self.__list.append(item)
 
     def pop(self):
-        self.__list.pop(-1)
+        return self.__list.pop(-1)
 
     def get_count(self):
         return self.__list.__len__()
