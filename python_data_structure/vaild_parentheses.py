@@ -12,7 +12,7 @@
 注意空字符串可被认为是有效字符串。
 """
 
-from python_data_structure.stack import Stack
+from python_data_structure.stack_demo import Stack
 
 
 class MySolution(object):

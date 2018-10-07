@@ -30,7 +30,7 @@ class LinkList(object):
         # if item.next is None:
         #     return item
         # else:
-        #     self._last(item.next)
+        #     return self._last(item.next)
         return item if item.next is None else self._last(item.next)
 
     def append(self, item):
@@ -79,8 +79,8 @@ class LinkList(object):
 
     def delete(self, index):
         if index == 0:
-           self.header = self.header.next
-           self.size -= 1
+            self.header = self.header.next
+            self.size -= 1
         else:
             item = self._next(self.header, index - 1)
             item.next = item.next.next
