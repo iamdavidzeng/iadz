@@ -17,7 +17,7 @@ class User(Base):
     name = Column(String(20))
 
 
-engine = create_engine('mysql+mysqlconnector://root:12345678@locahost:3306/demo')
+engine = create_engine('mysql+mysqlconnector://root:12345678@localhost:3306/demo')
 DBSession = sessionmaker(bind=engine)
 
 
