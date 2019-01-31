@@ -1,3 +1,4 @@
+alembic==1.0.7
 amqp==2.4.0
 certifi==2018.11.29
 chardet==3.0.4
@@ -7,6 +8,8 @@ greenlet==0.4.15
 idna==2.8
 importlib-metadata==0.8
 kombu==4.2.2.post1
+Mako==1.0.7
+MarkupSafe==1.1.0
 marshmallow==2.18.0
 mock==2.0.0
 monotonic==1.5
@@ -17,7 +20,9 @@ path.py==11.5.0
 pbr==5.1.1
 protobuf==3.6.1
 PyMySQL==0.9.3
-pyyaml>=4.2b1
+python-dateutil==2.7.5
+python-editor==1.0.3
+PyYAML==4.2b4
 requests==2.21.0
 six==1.12.0
 SQLAlchemy==1.2.16
