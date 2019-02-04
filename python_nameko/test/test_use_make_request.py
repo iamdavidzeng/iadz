@@ -3,6 +3,7 @@
 
 import json
 
+
 def test_will_return_expected_value(make_request):
     headers = {'User-Agent': 'Mozilla'}
     data = {'name': 'david', 'gender': 'male'}
