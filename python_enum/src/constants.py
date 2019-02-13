@@ -13,4 +13,4 @@ class SendShortMessageType(Enum):
 
 
 if __name__ == '__main__':
-    print(SendShortMessageType.bind)
+    print(*SendShortMessageType)

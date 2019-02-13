@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from nameko.rpc import rpc
 from nameko.testing.services import worker_factory
 
-from nameko_sqlalchemy import Session
+from nameko_sqlalchemy import DatabaseSession
 
 Base = declarative_base()
 
@@ -21,11 +21,11 @@ class Result(Base):
     value = Column(String(64))
 
 
-class Service(Base):
+class Service:
 
     name = 'service'
 
-    db = Session(Base)
+    db = DatabaseSession(Base)
 
     @rpc
     def save(self, value):
@@ -38,7 +38,7 @@ class Service(Base):
 def session():
     engine = create_engine('sqlite:///:memory:')
     Base.metadata.create_all(engine)
-    session_cls = sessionmaker(bing=engine)
+    session_cls = sessionmaker(bind=engine)
     return session_cls()
 
 

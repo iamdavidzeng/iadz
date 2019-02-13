@@ -24,7 +24,7 @@ def test_conversion_service():
     service = worker_factory(ConversionServie)
 
     service.maths_rpc.multiply.side_effect = lambda x, y: x * y
-    service.maths_rpc.divide.side_effect = lambda x, y : x / y
+    service.maths_rpc.divide.side_effect = lambda x, y: x / y
 
     assert service.inches_to_cm(300) == 762
     service.maths_rpc.multiply.assert_called_once_with(300, 2.54)
