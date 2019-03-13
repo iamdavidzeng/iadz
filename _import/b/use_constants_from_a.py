@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import sys
+sys.path.append("/Users/david/local/python_record/_import")
 
-from python_import.a.constants import Person
+from a.constants import Person
 
-
-print(Person)
+print(Person.first_name)
