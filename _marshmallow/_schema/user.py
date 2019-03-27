@@ -11,7 +11,7 @@ from marshmallow import (
 
 class User(Schema):
 
-    name = fields.Str(required=False, allow_none=True)
+    name = fields.Str(required=False, allow_none=True, dump_to="origin_name")
     address = fields.Str(required=False, allow_none=True)
     password = fields.Str(required=False, allow_none=True)
     # read-only
@@ -55,4 +55,8 @@ if __name__ == '__main__':
 
     data_after_dump = User(strict=True).dump(mock_student).data
 
-    print('data_after_dump: %s' % data_after_dump)
+
+    print(
+        'data_after_dump: %s' % data_after_dump,
+        "dump_to: %s" % data_after_dump.get("name")
+        )
