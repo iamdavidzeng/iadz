@@ -1,8 +1,8 @@
-"""initial table
+"""initial table Person
 
-Revision ID: 32bdfcb8fd5e
+Revision ID: 0249ed6eaeb3
 Revises: 
-Create Date: 2019-03-14 23:41:18.739771
+Create Date: 2019-04-08 23:14:06.113172
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '32bdfcb8fd5e'
+revision = '0249ed6eaeb3'
 down_revision = None
 branch_labels = None
 depends_on = None

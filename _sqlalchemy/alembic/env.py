@@ -1,7 +1,6 @@
 from __future__ import with_statement
 
 import os, sys
-
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
@@ -21,6 +20,7 @@ fileConfig(config.config_file_name)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
+
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, project_root)
 
