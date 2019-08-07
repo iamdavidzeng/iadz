@@ -20,13 +20,19 @@ class Solution(object):
         return lst
 
     def two_sum(self, nums, target):
-        pass
+        map = {}
+        for index, num in enumerate(nums):
+            another_num = target - num
+            if another_num in map:
+                return [map[another_num], index]
+            map[num] = index
+        return None
 
 
 if __name__ == "__main__":
 
     solution = Solution()
 
-    result = solution.twoSum([2, 2, 11, 15], 4)
+    result = solution.two_sum([2, 2, 11, 15], 4)
 
     print(result)
