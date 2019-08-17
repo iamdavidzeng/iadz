@@ -1,2 +1,6 @@
-# python_record
-平常所写的一些python的小demo
+# daily_record
+
+
+## 项目介绍
+
+其实基本就是一些平常会碰到的问题或者一些想法就把代码写下来，记录一下。
