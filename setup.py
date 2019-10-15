@@ -21,6 +21,7 @@ setup(
        "Flask-GraphQL==2.0.0",
        "marshmallow==2.19.5",
        "mysql-connector-python==8.0.16",
+       "elasticsearch-dsl>=6.0.0,<7.0.0",
     ],
     extras_require={
         "dev": [

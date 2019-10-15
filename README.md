@@ -28,3 +28,14 @@ source .env/bin/activate
 ```
 pip install -e ".[dev]"
 ```
+4. If you use VS-Code
+```
+# edit this in your .vscode/settings.json:
+    {
+        "python.linting.pylintEnabled": false,
+        "python.linting.flake8Enabled": true,
+        "python.linting.enabled": true,
+        "python.pythonPath": "${workspaceFolder}/.env/bin/python3.6"
+    }
+then you are able to use you virtualenv in VS-Code.
+```
