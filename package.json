@@ -1,0 +1,18 @@
+{
+  "name": "daily_record",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:D4vidz/python_record.git",
+  "author": "zzy <15779712170@163.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^12.12.6",
+    "express": "^4.17.1",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
+  },
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc"
+  }
+}
