@@ -1,0 +1,5 @@
+FROM alpine:3.8
+
+# shell form 
+# will ignores params from CMD or docker run
+ENTRYPOINT echo "Hello, David" 
