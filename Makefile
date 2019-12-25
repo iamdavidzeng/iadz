@@ -4,5 +4,5 @@
 build:
 	yarn run build
 
-develop:
+develop: build
 	yarn run start
