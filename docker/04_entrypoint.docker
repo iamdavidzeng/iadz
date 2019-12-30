@@ -1,0 +1,6 @@
+FROM alpine:3.8
+
+ENV name David
+
+# name is not substituted by David 
+ENTRYPOINT ["/bin/echo", "Hello, $name"]

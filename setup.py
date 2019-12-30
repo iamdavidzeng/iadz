@@ -22,6 +22,7 @@ setup(
        "marshmallow==2.19.5",
        "mysql-connector-python==8.0.16",
        "elasticsearch-dsl>=6.0.0,<7.0.0",
+       "redis==3.3.11",
     ],
     extras_require={
         "dev": [

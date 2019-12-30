@@ -1,0 +1,5 @@
+FROM alpine:3.8
+
+# exec form
+# will accept params from `docker run` 
+ENTRYPOINT ["/bin/echo", "Hello, world"]

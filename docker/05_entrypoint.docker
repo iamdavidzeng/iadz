@@ -1,0 +1,6 @@
+FROM alpine:3.8
+
+ENV name David
+
+# seems like after use /bin/sh can't accepts params from outside
+ENTRYPOINT ["/bin/sh", "-c", "echo Hello $name"]

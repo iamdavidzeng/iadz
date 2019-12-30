@@ -1,0 +1,9 @@
+FROM alpine:3.8
+
+CMD ["haha1"]
+
+# Exec form
+# will use last CMD params or `docker run`
+ENTRYPOINT ["/bin/echo", "Hello"]
+
+CMD ["world"]
