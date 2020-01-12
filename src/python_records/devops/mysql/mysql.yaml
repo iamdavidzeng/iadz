@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  type: NodePort
+  selector:
+    app: mysql-server
+  ports:
+    - port: 3306
+      targetPort: 3306
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-server
+  labels:
+    app: mysql-server
+spec:
+  selector:
+    matchLabels:
+      app: mysql-server
+  template:
+    metadata:
+      labels:
+        app: mysql-server
+    spec:
+      containers:
+      - name: mysql-server
+        image: mysql:5.6.34
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: ""
+        - name: MYSQL_ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: pvc-mysql
+          mountPath: "/var/lib/mysql"
+      volumes:
+      - name: pvc-mysql
+        persistentVolumeClaim:
+          claimName: pvc-mysql
