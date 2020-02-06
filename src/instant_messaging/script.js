@@ -8,7 +8,6 @@ appendMessage('You joined')
 socket.emit('new-user', name)
 
 socket.on('chat-message', data => {
-    console.log(data)
     appendMessage(`${data.name}: ${data.message}`)
 })
 
