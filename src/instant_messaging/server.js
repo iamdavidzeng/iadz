@@ -1,4 +1,7 @@
-const io = require('socket.io')(3000)
+const port = process.env.PORT || 3000;
+const io = require('socket.io')(port);
+const redisAdapter = require('socket.io-redis');
+io.adapter(redisAdapter({ host: 'localhost', port: 6379 }));
 
 const users = {}
 
