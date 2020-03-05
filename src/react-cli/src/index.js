@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Nav from './components/Nav';
 import getRouter from './router';
 import store from './redux/store';
+import '../mock/mock.js';
 
 
 ReactDom.render(

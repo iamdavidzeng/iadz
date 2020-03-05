@@ -15,7 +15,7 @@ class Counter extends PureComponent {
     }
 }
 
-export default connect((state) => state, dispatch => ({
+export default connect(({counter}) => counter, dispatch => ({
     increment: () => {
         dispatch(increment())
     },

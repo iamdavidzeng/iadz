@@ -1,6 +1,6 @@
 const babelConfig = {
     presets: ["@babel/preset-react", "@babel/preset-env"],
-    plugins: []
+    plugins: ["@babel/plugin-syntax-dynamic-import"]
  }
  
  module.exports = babelConfig;
