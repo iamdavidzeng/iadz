@@ -4,6 +4,8 @@ import { increment, decrement, reset } from 'actions/counter';
 
 class Counter extends PureComponent {
     render() {
+        // View的状态来自于props，props传递的是store中的state
+        // const { counter, increment, decrement, reset } = this.props;
         return (
             <div>
                 <div>当前计数为{this.props.count}</div>
@@ -15,14 +17,19 @@ class Counter extends PureComponent {
     }
 }
 
-export default connect(({counter}) => counter, dispatch => ({
-    increment: () => {
-        dispatch(increment())
-    },
-    decrement: () => {
-        dispatch(decrement())
-    },
-    reset: () => {
-        dispatch(reset())
-    },
-}))(Counter);
+export default connect(
+    state => ({
+        count: state.counter.count
+    }), //  输入，将store中的state通过props输入
+    dispatch => ({  //  输出，将action作为props绑定到View上，用户操作类型在此分发出去
+        increment: () => {
+            dispatch(increment())
+        },
+        decrement: () => {
+            dispatch(decrement())
+        },
+        reset: () => {
+            dispatch(reset())
+        },
+    })
+)(Counter);

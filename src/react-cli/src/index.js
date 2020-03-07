@@ -10,6 +10,7 @@ import '../mock/mock.js';
 
 
 ReactDom.render(
+    // Provider在根组件外面包了一层，App的所有子组件就默认都可以拿到store，通过组件的props传递
     <Provider store={store}>
         <Router>
             <Nav />

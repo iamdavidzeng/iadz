@@ -10,6 +10,7 @@ const initState = {
 /*
 * reducer
  */
+// 通过判断Action的类型，返回新的数据改变后的state对象，即使没有任何状态的改变，也要返回一个对象
 export default function reducer(state=initState, action) {
     switch (action.type) {
         case INCREMENT:
