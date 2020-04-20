@@ -15,7 +15,6 @@ setup(
        "PyYAML==5.1",
        "SQLAlchemy==1.3.3",
        "nameko==3.0.0-rc8",
-       "nameko-sqlalchemy==1.5.0",
        "graphene==2.1.3",
        "Flask==1.0.2",
        "Flask-GraphQL==2.0.0",
