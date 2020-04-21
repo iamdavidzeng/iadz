@@ -39,4 +39,3 @@ pip install -e ".[dev]"
     }
 then you are able to use you virtualenv in VS-Code.
 ```
-dd
