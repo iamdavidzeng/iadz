@@ -3,7 +3,7 @@ import { Subscription, Effect } from 'dva';
 
 import { NoticeIconData } from '@/components/NoticeIcon';
 import { queryNotices } from '@/services/user';
-import { ConnectState } from './connect.d';
+import { ConnectState } from './connect';
 
 export interface NoticeItem extends NoticeIconData {
   id: string;
