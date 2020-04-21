@@ -4,10 +4,10 @@
   "description": "Ant Design tutorial",
   "main": "index.js",
   "dependencies": {
-    "react-dom": "latest",
-    "react": "latest",
+    "antd": "^4.1.4",
     "moment": "latest",
-    "antd": "latest",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-scripts": "^3.4.0"
   },
   "scripts": {
