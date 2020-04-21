@@ -29,6 +29,7 @@ setup(
             "pytest==4.5.0",
             "coverage==4.5.3",
             "mock==2.0.0",
+            "behave==1.2.6",
         ]
     },
     zip_safe=True
