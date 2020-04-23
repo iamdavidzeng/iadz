@@ -22,6 +22,7 @@ setup(
        "mysql-connector-python==8.0.16",
        "elasticsearch-dsl>=6.0.0,<7.0.0",
        "redis==3.3.11",
+       "braintree==4.0.0",
     ],
     extras_require={
         "dev": [
@@ -30,6 +31,7 @@ setup(
             "coverage==4.5.3",
             "mock==2.0.0",
             "behave==1.2.6",
+            "black"
         ]
     },
     zip_safe=True
