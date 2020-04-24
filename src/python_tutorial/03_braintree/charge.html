@@ -1,6 +1,7 @@
 <head>
     <meta charset="utf-8">
     <script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -14,29 +15,20 @@
             container: '#dropin-container'
         }, function (createErr, instance) {
             button.addEventListener('click', function () {
+                console.log("---------")
                 instance.requestPaymentMethod(function (err, payload) {
                     // Submit payload.nonce to your server
-                    $.ajax({
-                        type: 'POST',
+                    console.log(payload)
+                    axios({
+                        method: 'post',
                         url: '/checkout',
-                        data: { 'paymentMethodNonce': payload.nonce }
-                    }).done(function (result) {
-                        // Tear down the Drop-in UI
-                        instance.teardown(function (teardownErr) {
-                            if (teardownErr) {
-                                console.error('Could not tear down Drop-in UI!');
-                            } else {
-                                console.info('Drop-in UI has been torn down!');
-                                // Remove the 'Submit payment' button
-                                $('#submit-button').remove();
-                            }
-                        });
-                        if (result.success) {
-                            console.log(result);
-                        } else {
-                            console.log(result);
+                        data: {
+                            payment_method_nonce: payload.nonce
                         }
+                    }).then((result) => {
+                        console.log(result)
                     })
+                    ;
                 });
             });
         });
