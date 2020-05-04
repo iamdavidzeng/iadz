@@ -23,6 +23,7 @@ setup(
        "elasticsearch-dsl>=6.0.0,<7.0.0",
        "redis==3.3.11",
        "braintree==4.0.0",
+       "pycountry>=19.8.18",
     ],
     extras_require={
         "dev": [

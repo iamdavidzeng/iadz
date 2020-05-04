@@ -6,11 +6,11 @@ from enum import Enum
 
 class SendShortMessageType(Enum):
 
-    bind = 'bind'
-    auth = 'auth'
-    login = 'login'
-    signup = 'signup'
+    bind = "bind"
+    auth = "auth"
+    login = "login"
+    sign_up = "sign_up"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(*SendShortMessageType)
