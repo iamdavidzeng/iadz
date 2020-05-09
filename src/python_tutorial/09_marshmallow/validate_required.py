@@ -13,6 +13,7 @@ class User(Schema):
 def minus_balance(balance):
 
     balance -= 100
+    return 100
 
 if __name__ == "__main__":
     user = {"name": "iamdavidzeng", "gender": "male", "booking_ids": [1]}
@@ -20,5 +21,7 @@ if __name__ == "__main__":
     print(load_user)
 
     balance = 1000
-    minus_balance(balance)
+    for i in range(5):
+        pay_amount = minus_balance(balance)
+        balance -= pay_amount
     print(balance)
