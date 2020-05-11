@@ -24,6 +24,7 @@ setup(
        "redis==3.3.11",
        "braintree==4.0.0",
        "pycountry>=19.8.18",
+       "SQLAlchemy-Utils==0.36.5",
     ],
     extras_require={
         "dev": [
