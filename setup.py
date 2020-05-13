@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 
 
 setup(
-    name="python_tutorial",
+    name="tutorial",
     version="0.0.1",
     description="Use to manage python_tutorial",
     packages=find_packages("src", exclude=["test"]),
