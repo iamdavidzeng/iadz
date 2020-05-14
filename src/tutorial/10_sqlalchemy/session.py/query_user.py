@@ -13,6 +13,7 @@ def get_user(id_):
 
     return resource
 
+
 if __name__ == "__main__":
     print(f"session: {id(session)}")
     while True:
@@ -24,6 +25,7 @@ if __name__ == "__main__":
             break
         else:
             print(f"Can't find User[1] now.")
-            session.expire_all()
+            # simply end our transaction and start a new one
+            # on next access with our Session by calling Session.commit()
+            session.commit()
             sleep(5)
-            
