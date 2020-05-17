@@ -1,0 +1,16 @@
+payment_items:
+  - student_id: 1
+    booking_id: 1
+    model_type: installment
+    model_id: 1
+    category: rent
+    description: first installment
+    currency: GBP
+    total_amount: 1000
+    tax_name: 
+    tax_rate: 
+    tax_amount:
+    is_refundable: False
+    is_part_of_rent: False
+    due_datetime: "2020-5-10 00:00:00"
+    invoice_datetime: "2020-6-10 00:00:00"
