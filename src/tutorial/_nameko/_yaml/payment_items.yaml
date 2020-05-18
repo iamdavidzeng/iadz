@@ -1,16 +1,68 @@
 payment_items:
   - student_id: 1
+    property_id: 1
     booking_id: 1
     model_type: installment
     model_id: 1
     category: rent
-    description: first installment
+    description: 1st installment
     currency: GBP
-    total_amount: 1000
+    total_amount: 100
     tax_name: 
     tax_rate: 
     tax_amount:
     is_refundable: False
     is_part_of_rent: False
-    due_datetime: "2020-5-10 00:00:00"
-    invoice_datetime: "2020-6-10 00:00:00"
+    due_datetime: 
+    invoice_datetime: 
+
+  - student_id: 1
+    property_id: 1
+    booking_id: 1
+    model_type: additional_fee
+    model_id: 1
+    category: additional_fee
+    description: deposit
+    currency: GBP
+    total_amount: 100
+    tax_name:
+    tax_rate:
+    tax_amount:
+    is_refundable: False
+    if_part_of_rent: False
+    due_datetime:
+    invoice_datetime:
+
+  - student_id: 1
+    property_id: 1
+    booking_id: 1
+    model_type: installment
+    model_id: 2
+    category: rent
+    description: 2nd installment
+    currency: GBP
+    total_amount: 100
+    tax_name:
+    tax_rate:
+    tax_amount:
+    is_refundable: False
+    is_part_of_rent: False
+    due_datetime: now+10
+    invoice_datetime: now+5
+
+  - student_id: 1
+    property_id: 1
+    booking_id: 1
+    model_type: installment
+    model_id: 3
+    category: rent
+    description: 3rd installment
+    currency: GBP
+    total_amount: 100
+    tax_name:
+    tax_rate:
+    tax_amount:
+    is_refundable: False
+    is_part_of_rent: False
+    due_datetime: now+20
+    invoice_datetime: now+15
