@@ -30,8 +30,8 @@ payment_items:
     tax_amount:
     is_refundable: False
     if_part_of_rent: False
-    due_datetime:
-    invoice_datetime:
+    due_datetime: now
+    invoice_datetime: now
 
   - student_id: 1
     property_id: 1
@@ -47,8 +47,8 @@ payment_items:
     tax_amount:
     is_refundable: False
     is_part_of_rent: False
-    due_datetime: now+10
-    invoice_datetime: now+5
+    due_datetime: now+10d
+    invoice_datetime: now+5d
 
   - student_id: 1
     property_id: 1
@@ -65,4 +65,26 @@ payment_items:
     is_refundable: False
     is_part_of_rent: False
     due_datetime: now+20
-    invoice_datetime: now+15
+    invoice_datetime: now-15d
+
+payments:
+  - type: payment
+    category: rent
+    description:
+    channel: offline
+    method: card
+    card_brand: cash
+    amount: 500
+    currency: GBP
+    tax_amount:
+    student_id: 1
+    property_id: 1
+    booking_id: 1
+    payment_item_ids: [1]
+    reference_info: "123456789"
+    reference_uuids: 
+      - uuid1
+      - uuid2
+    received_currency: GBP
+    received_amount: 500
+    exchange_rate:

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 import logging
 import argparse
 from datetime import datetime, timedelta
@@ -7,6 +8,9 @@ import yaml
 from nameko import config
 from nameko.cli.utils.config import setup_yaml_parser
 from nameko.standalone.rpc import ClusterRpcClient
+
+
+MATCHER = r"^[a-z]*now([\+|\-]{1}\d+)d*$"
 
 
 def setup_parser():
@@ -27,21 +31,23 @@ def get_payment_items(yaml_path):
         result = yaml.unsafe_load(stream.read())
 
     payment_items = result["payment_items"]
+    payments = result["payments"]
+
+    print(payments)
 
     for payment_item in payment_items:
-
-        import re
-
         due_datetime = payment_item["due_datetime"]
         invoice_datetime = payment_item["invoice_datetime"]
 
         if not due_datetime:
             pass
         else:
-            days = re.findall(r"\d+", due_datetime)
-            days = int(days[0]) if days else 0
-            due_datetime = datetime.utcnow() + timedelta(days=days)
-
+            match_obj = re.search(MATCHER, due_datetime)
+            if match_obj:
+                days = int(match_obj.groups()[0])
+                due_datetime = datetime.utcnow() + timedelta(days=days)
+            else:
+                due_datetime = datetime.utcnow()
             payment_item.update(
                 due_datetime=due_datetime.isoformat()
             )
@@ -49,10 +55,12 @@ def get_payment_items(yaml_path):
         if not invoice_datetime:
             pass
         else:
-            days = re.findall(r"\d+", invoice_datetime)
-            days = int(days[0]) if days else 0
-            invoice_datetime = datetime.utcnow() + timedelta(days=days)
-
+            match_obj = re.search(MATCHER, invoice_datetime)
+            if match_obj:
+                days = int(match_obj.groups()[0])
+                invoice_datetime = datetime.utcnow() + timedelta(days=days)
+            else:
+                invoice_datetime = datetime.utcnow()
             payment_item.update(
                 invoice_datetime=invoice_datetime.isoformat()
             )
@@ -67,8 +75,6 @@ if __name__ == "__main__":
 
     override_config = get_config(args.config)
     payment_items = get_payment_items(args.load_from)
-
-    print(payment_items)
 
     # with config.patch(override_config, clear=True):
     #     with ClusterRpcClient() as proxy:
