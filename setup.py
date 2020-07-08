@@ -15,9 +15,6 @@ setup(
        "PyYAML==5.1",
        "SQLAlchemy==1.3.3",
        "nameko==3.0.0-rc8",
-       "graphene==2.1.3",
-       "Flask==1.0.2",
-       "Flask-GraphQL==2.0.0",
        "marshmallow==2.19.5",
        "mysql-connector-python==8.0.16",
        "elasticsearch-dsl>=6.0.0,<7.0.0",
@@ -25,6 +22,8 @@ setup(
        "braintree==4.0.0",
        "pycountry>=19.8.18",
        "SQLAlchemy-Utils==0.36.5",
+       "numpy==1.16.2",
+       "pandas==0.24.2",
     ],
     extras_require={
         "dev": [
