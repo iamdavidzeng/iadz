@@ -20,6 +20,7 @@ def use_data_frames():
         ],
     )
 
+    # New column `property_score`
     weight = [1, 10, 100, 50]
 
     property_score = []
