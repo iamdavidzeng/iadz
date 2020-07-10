@@ -33,31 +33,30 @@ if __name__ == "__main__":
         password = os.getenv("PASSWORD")
         db_name = os.getenv("DB_NAME")
 
-        try:
-            print(f"Starting connect.........")
-            conn = connector.connect(
-                host="127.0.0.1",
-                port=10036,
-                user=user,
-                password=password,
-                database=db_name,
-            )
+        print(f"Starting connect.........")
+        conn = connector.connect(
+            host="127.0.0.1",
+            port=10036,
+            user=user,
+            password=password,
+            database=db_name,
+        )
 
-            cs = conn.cursor()
+        cs = conn.cursor()
 
-            cs.execute(
+        cs.execute(
+            """
+                SELECT
+                    *
+                FROM
+                    charges c
+                LIMIT 10;
                 """
-                    SELECT
-                        *
-                    FROM
-                        charges c
-                    LIMIT 10;
-                    """
-            )
-            result = cs.fetchall()
+        )
+        result = cs.fetchall()
 
-            print(f"result: {result}")
-        finally:
-            cs.close()
-            conn.close()
-            print(f"Close connection.......")
+        print(f"result: {result}")
+
+        cs.close()
+        conn.close()
+        print(f"Close connection.......")
