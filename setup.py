@@ -24,6 +24,7 @@ setup(
        "SQLAlchemy-Utils==0.36.5",
        "numpy==1.16.2",
        "pandas==0.24.2",
+       "sshtunnel==0.1.5",
     ],
     extras_require={
         "dev": [
