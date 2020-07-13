@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*
 
 import os
+import logging
 from time import sleep
 
+import sshtunnel
 from mysql import connector
-from sshtunnel import SSHTunnelForwarder
 
 
 if __name__ == "__main__":
 
-    with SSHTunnelForwarder(
+    sshtunnel.DEFAULT_LOGLEVEL = logging.DEBUG
+
+    with sshtunnel.SSHTunnelForwarder(
         "54.179.137.16",
         ssh_username="debug",
         ssh_pkey="~/.ssh/id_rsa",
@@ -17,7 +20,7 @@ if __name__ == "__main__":
             "stage-platform.cgytt8vtm5xx.ap-southeast-1.rds.amazonaws.com",
             3306,
         ),
-        local_bind_address=("127.0.0.1", 10036),
+        local_bind_address=("127.0.0.1", 57788),
     ) as server:
 
         print(f"server: {server}")
@@ -36,7 +39,7 @@ if __name__ == "__main__":
         print(f"Starting connect.........")
         conn = connector.connect(
             host="127.0.0.1",
-            port=10036,
+            port=server.local_bind_port,
             user=user,
             password=password,
             database=db_name,
