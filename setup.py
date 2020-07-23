@@ -25,6 +25,7 @@ setup(
        "numpy==1.16.2",
        "pandas==0.24.2",
        "sshtunnel==0.1.5",
+       "boto3==1.14.25",
     ],
     extras_require={
         "dev": [
