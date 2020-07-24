@@ -26,6 +26,7 @@ setup(
        "pandas==0.24.2",
        "sshtunnel==0.1.5",
        "boto3==1.14.25",
+       "pycryptodome==3.9.8",
     ],
     extras_require={
         "dev": [
