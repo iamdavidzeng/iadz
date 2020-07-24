@@ -32,7 +32,7 @@ class CryptoManagement:
     def decrypt(self, data):
         data = base64.b64decode(data)
 
-        decrypted = self.decryptor.decrypt(data).decode("utf-8").strip()
+        decrypted = self.decryptor.decrypt(data).decode("utf-8")
 
         return self._unpadding(decrypted)
 
