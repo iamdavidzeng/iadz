@@ -17,7 +17,7 @@ fi;
 LAST_RELEASE_TAG=$(git tag --list 'v*' --sort=-v:refname | head -n 1)
 
 if [ LAST_RELEASE_TAG ]; then
-    NEW_RELEASE=$(echo $LAST_RELEASE_TAG | sed s/.$/`expr ${LAST_RELEASE_TAG: -1} + 1`/g);
+    NEW_RELEASE=$(echo $LAST_RELEASE_TAG | awk -F. '{print $1"."$2"."$3}');
 else
     NEW_RELEASE="v1.0.0"
 fi;
