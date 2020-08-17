@@ -6,7 +6,7 @@
 
 RELEASE_TYPE=$1
 
-API_URL = "https://api.github.com/repos/iamdavidzeng/daily_record"
+API_URL="https://api.github.com/repos/iamdavidzeng/daily_record"
 
 # Ignore stage
 
@@ -17,7 +17,7 @@ fi;
 LAST_RELEASE_TAG=$(git tag --list 'v*' --sort=-v:refname | head -n 1)
 
 if [ LAST_RELEASE_TAG ]; then
-    NEW_RELEASE=$(echo $LAST_RELEASE_TAG | awk -F. '{print $1"."$2"."$3}');
+    NEW_RELEASE=$(echo $LAST_RELEASE_TAG | awk -F. '{print $1"."$2"."$3+1}');
 else
     NEW_RELEASE="v1.0.0"
 fi;
