@@ -20,19 +20,6 @@ min_time = time(0, 0, 0)
 max_time = time(0, 30, 0)
 
 property_ids = list(
-    property_["property_id"]
-    for property_ in properties
-    if min_time
-    # <= datetime.now(pytz.utc).astimezone(pytz.timezone(property_["timezone"])).time()
-    <= pytz.utc.localize(datetime(2020, 9, 23, 16, 20, 0))
-    .astimezone(pytz.timezone(property_["timezone"]))
-    .time()
-    < max_time
-)
-
-print(property_ids)
-
-property_with_max_datetime = list(
     (
         property_["property_id"],
         datetime.combine(
@@ -41,7 +28,12 @@ property_with_max_datetime = list(
         ).astimezone(pytz.utc),
     )
     for property_ in properties
-    if property_["property_id"] in property_ids
+    if min_time
+    # <= datetime.now(pytz.utc).astimezone(pytz.timezone(property_["timezone"])).time()
+    <= pytz.utc.localize(datetime(2020, 9, 23, 16, 00, 0))
+    .astimezone(pytz.timezone(property_["timezone"]))
+    .time()
+    < max_time
 )
 
-print(property_with_max_datetime)
+print(property_ids)
