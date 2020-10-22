@@ -1,9 +1,8 @@
 # daily_record
-
-Use to record some daily code...
+Daily coding...
 
 ```
-git clone git@github.com:D4vidz/daily_record.git
+git clone git@github.com:iamdavidzeng/daily_record.git
 
 cd /path/to/daily_record
 ```
