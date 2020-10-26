@@ -1,0 +1,13 @@
+name: iamdavidzeng
+
+files:
+    config1.json: |-    # 用于换行和去除末行换行
+        {
+            "level": "info",
+            "format": "customize format"
+        }
+    config2.json: |
+        {
+            "level": "warning",
+            "format": "customize format"
+        }
