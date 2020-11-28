@@ -1,0 +1,56 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Test Doc
+  description: >
+    The Test Doc is beautiful
+host: "localhost:4000"
+bathPath: v1
+schemes:
+  - https
+paths:
+  /articles:
+    get:
+      tags:
+        - Articles
+      summary: List articles
+      produces:
+        - application/json
+      parameters:
+        - name: authorization
+          in: header
+          description: "Auth token"
+          type: string
+          required: true
+        - name: category
+          in: query
+          description: "category of Article"
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/ListArticlesResponse'
+definitions:
+  Id:
+    type: string
+    example: test token
+  ListArticlesResponse:
+    type: object
+    properties:
+      articles:
+        type: array
+        items:
+          $ref: '#/definitions/Article'
+  Article:
+    type: object
+    properties:
+      id:
+        $ref: '#/definitions/Id'
+      title:
+        type: string
+        example: test title
+      category:
+        type: string
+        example: test category
+
