@@ -35,7 +35,7 @@ def send_alert_to_slack():
     for message in result:
 
         alert = message["_source"]["context_message"]
-        
+
         payload = {
             "channel": "#platform_alerts",
             "username": "video-syncer",

@@ -17,16 +17,14 @@ setup(
        "nameko==3.0.0-rc8",
        "marshmallow==2.19.5",
        "mysql-connector-python==8.0.16",
-       "elasticsearch-dsl>=6.0.0,<7.0.0",
+       "elasticsearch-dsl>=7.0.0,<8.0.0",
        "redis==3.3.11",
-       "braintree==4.0.0",
        "pycountry>=19.8.18",
        "SQLAlchemy-Utils==0.36.5",
-       "numpy==1.16.2",
-       "pandas==0.24.2",
        "sshtunnel==0.1.5",
        "boto3==1.14.25",
        "pycryptodome==3.9.8",
+       "tqdm==4.54.0",
     ],
     extras_require={
         "dev": [
@@ -35,7 +33,7 @@ setup(
             "coverage==4.5.3",
             "mock==2.0.0",
             "behave==1.2.6",
-            "black"
+            "black==20.8b1",
         ]
     },
     zip_safe=True
