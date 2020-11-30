@@ -39,6 +39,8 @@ class Counter():
         self.limit = limit
 
     def main(self):
+        # ncols控制进度条长度
+        # total控制循环次数
         with tqdm(total=self.num, ncols=100) as pbar:
             for i in range(self.num):
                 sleep(0.1)
