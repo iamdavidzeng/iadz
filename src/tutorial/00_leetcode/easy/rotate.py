@@ -9,9 +9,8 @@ def rorate(nums: list, k: int):
     Return:
         旋转后的数组
     """
-    # k = k % len(nums)
-    # nums[:] = nums[-k:] + nums[:-k]
-    nums[:] = nums[len(nums)-k:] + nums[:len(nums)-k]
+    k = k % len(nums)
+    nums[:] = nums[-k:] + nums[:-k]
 
 
 
