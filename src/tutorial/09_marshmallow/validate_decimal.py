@@ -6,14 +6,13 @@ from marshmallow.fields import Decimal as DecimalField
 
 
 class BalanceSchema(Schema):
-
-    wallet_balance = DecimalField(2, required=True, allow_none=False, as_string=False)
-    credit_balance = DecimalField(2, required=True, allow_none=False, as_string=True)
+    wallet_balance = DecimalField(2, required=True, allow_none=False, as_string=True)
+    credit_balance = DecimalField(2, required=True, allow_none=True, as_string=True)
 
 
 if __name__ == "__main__":
 
-    data = {"wallet_balance": "100.10", "credit_balance": Decimal(100.01)}
+    data = {"wallet_balance": "100.10", "credit_balance": None}
 
     loaded_balance = BalanceSchema(strict=True).load(data).data
     print(f"after load: {loaded_balance}")
