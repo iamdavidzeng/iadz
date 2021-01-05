@@ -12,7 +12,9 @@ class BalanceSchema(Schema):
 
 if __name__ == "__main__":
 
-    data = {"wallet_balance": "100.10", "credit_balance": None}
+    data = {"wallet_balance": 100.22, "credit_balance": None}
+
+    print(Decimal(100.22))
 
     loaded_balance = BalanceSchema(strict=True).load(data).data
     print(f"after load: {loaded_balance}")
