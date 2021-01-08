@@ -1,5 +1,9 @@
 {
   "devDependencies": {
+    "coffeescript": "^2.5.1",
     "spectacle-docs": "^1.1.0"
+  },
+  "scripts": {
+    "build-docs": "node build_doc.js"
   }
 }

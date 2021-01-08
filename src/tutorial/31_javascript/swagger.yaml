@@ -53,4 +53,7 @@ definitions:
       category:
         type: string
         example: test category
-
+      updatedAt:
+        type: string
+        format: date
+        example: 2021-01-08
