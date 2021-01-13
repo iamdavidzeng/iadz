@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-
+import json
 from datetime import datetime
+
 from elasticsearch_dsl import (
     Document,
     Date,
@@ -9,11 +10,11 @@ from elasticsearch_dsl import (
     analyzer,
     InnerDoc,
     Completion,
-    Keyword,
     Text,
     connections,
     Index,
 )
+from elasticsearch_dsl.document import MetaField
 
 html_strip = analyzer(
     "html_strip",
@@ -21,6 +22,9 @@ html_strip = analyzer(
     filter=["lowercase", "stop", "snowball"],
     char_filter=["html_strip"],
 )
+
+
+INDEX = "blog"
 
 
 class Comment(InnerDoc):
@@ -34,6 +38,9 @@ class Comment(InnerDoc):
 
 
 class Post(Document):
+    class Meta:
+        dynamic = MetaField("strict")
+
     title = Text()
     title_suggest = Completion()
     published = Boolean()
@@ -49,7 +56,7 @@ class Post(Document):
 
     def save(self, **kwargs):
         self.created_at = datetime.now()
-        return super().save()
+        return super().save(**kwargs)
 
 
 def create_connection():
@@ -64,11 +71,12 @@ def create_post_index():
     """
     Create a new Index post and select Post as document.
     """
-    post_index = Index("post")
+    post_index = Index(INDEX)
 
     if post_index.exists():
         return post_index
 
+    post_index.settings(number_of_shards=1, number_of_replicas=0)
     post_index.document(Post)
 
     post_index.create()
@@ -76,6 +84,6 @@ def create_post_index():
     return post_index
 
 
-if __name__ == "__main__":
-    client = create_connection()
-    create_post_index()
+# if __name__ == "__main__":
+#     client = create_connection()
+#     create_post_index()
