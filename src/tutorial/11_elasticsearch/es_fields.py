@@ -15,6 +15,9 @@ from elasticsearch_dsl import (
     Index,
 )
 from elasticsearch_dsl.document import MetaField
+from elasticsearch_dsl.field import Keyword
+from elasticsearch_dsl.query import Q
+from elasticsearch_dsl.search import Search
 
 html_strip = analyzer(
     "html_strip",
@@ -44,7 +47,7 @@ class Post(Document):
     title = Text()
     title_suggest = Completion()
     published = Boolean()
-    category = Text()
+    category = Keyword()
     comments = Nested(Comment)
 
     created_at = Date()
@@ -84,6 +87,47 @@ def create_post_index():
     return post_index
 
 
-# if __name__ == "__main__":
-#     client = create_connection()
-#     create_post_index()
+def create_search(
+    must: list = None,
+    should: list = None,
+    filter_: list = None,
+    must_not: list = None,
+    source: dict = None,
+    sort=None,
+) -> Search:
+    """
+    Search index by construct query.
+
+    Kwargs:
+        must: list of the must satisfied query
+        should: list of the should satisfied query
+        sort: sort statement
+
+    Return:
+        Search object.
+    """
+    s = Search(index=INDEX)
+
+    match_all = Q("match_all")
+
+    must = must + [match_all] if must else [match_all]
+    should = should if should else []
+    filter_ = filter_ if filter_ else []
+    must_not = must_not if must_not else []
+
+    s = s.query("bool", must=must, should=should, filter=filter_, must_not=must_not)
+
+    if sort:
+        s = s.sort(sort)
+    
+    if source:
+        s = s.source(**source)
+
+    print(f"Query: {json.dumps(s.to_dict())}")
+
+    return s
+
+
+if __name__ == "__main__":
+    client = create_connection()
+    create_post_index()

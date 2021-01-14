@@ -5,52 +5,40 @@ from es_fields import create_connection, Post, INDEX
 
 if __name__ == "__main__":
     client = create_connection()
-    post = {
-        "title": "foo",
-        "title_suggest": "foo",
-        "published": False,
-        "category": "bar",
-        "comments": [
-            {
-                "author": "david",
-                "content": "baz",
-            }
-        ],
-    }
     posts = [
         {
-            "title": "foo_1",
-            "title_suggest": "foo_1",
+            "title": "foo",
+            "title_suggest": "foo",
             "published": False,
-            "category": "bar_1",
+            "category": "foo",
             "comments": [
                 {
                     "author": "iamdavidzeng",
-                    "content": "baz_1",
+                    "content": "foo",
                 }
             ],
         },
         {
-            "title": "foo_2",
-            "title_suggest": "foo_2",
+            "title": "bar",
+            "title_suggest": "bar",
             "published": True,
-            "category": "bar_1",
+            "category": "bar",
             "comments": [
                 {
                     "author": "iamdavidzeng",
-                    "content": "baz_2",
+                    "content": "bar",
                 }
             ],
         },
         {
-            "title": "foo_3",
-            "title_suggest": "foo_3",
+            "title": "baz",
+            "title_suggest": "baz",
             "published": False,
-            "category": "bar_1",
+            "category": "baz",
             "comments": [
                 {
                     "author": "iamdavidzeng",
-                    "content": "baz_3",
+                    "content": "baz",
                 }
             ],
         },

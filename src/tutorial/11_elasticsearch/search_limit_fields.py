@@ -1,12 +1,19 @@
 # -*- coding: utf-8 -*-
+import json
 
+from elasticsearch_dsl.query import Q
 
-from elasticsearch import Elasticsearch
-from elasticsearch_dsl import Search
-
-
-search = Search(using=Elasticsearch("localhost:9201"), index="property")
+from es_fields import create_search, create_connection
 
 
 if __name__ == "__main__":
-    print(search.execute().to_dict())
+
+    client = create_connection()
+
+    limit_fields = {"includes": ["title", "category"], "excludes": ["comments"]}
+
+    s = create_search(source=limit_fields)
+
+    response = s.execute()
+
+    print(f"Response: {json.dumps(response.to_dict())}")
