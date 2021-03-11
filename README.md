@@ -1,10 +1,10 @@
-# daily_record
+# daily-record
 Daily coding...
 
 ```
-git clone git@github.com:iamdavidzeng/daily_record.git
+git clone git@github.com:iamdavidzeng/daily-record.git
 
-cd /path/to/daily_record
+cd /path/to/daily-record
 ```
 
 ## Prerequisites
