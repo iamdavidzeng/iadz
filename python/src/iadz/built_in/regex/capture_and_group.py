@@ -14,7 +14,8 @@ ENV_MATCHER = re.compile(
     :?
     ([^}]+)?
     \}
-    """, re.VERBOSE
+    """,
+    re.VERBOSE,
 )
 
 
@@ -43,7 +44,8 @@ def demo1(value):
         loves
         \s?
         (\w+)
-        """, re.VERBOSE
+        """,
+        re.VERBOSE,
     )
     value = MATCHER.sub(double, value)
     return value
@@ -55,9 +57,6 @@ if __name__ == "__main__":
 """
     # print(demo(value))
 
-    s = [
-        "Marry loves Tom",
-        "Dasiy loves Smith"
-    ]
+    s = ["Marry loves Tom", "Dasiy loves Smith"]
     for i in s:
         demo1(i)

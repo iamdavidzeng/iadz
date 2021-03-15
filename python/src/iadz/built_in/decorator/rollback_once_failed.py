@@ -38,6 +38,7 @@ def rollback_once_failed(func):
                 self.session.commit()
                 print("commit successfully")
             print("func can't commit when commit is False")
+
     return wrapper
 
 

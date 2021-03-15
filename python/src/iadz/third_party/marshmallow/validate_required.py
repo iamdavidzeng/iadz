@@ -26,4 +26,3 @@ if __name__ == "__main__":
         pay_amount = minus_balance(balance)
         balance -= pay_amount
     print(balance)
-

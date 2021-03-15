@@ -29,17 +29,17 @@ threadName	%(thread)s	线程名称
 
 import logging
 
-LOG_FORMAT = '%(asctime)s [%(threadName)s:%(thread)d] [%(name)s:%(lineno)d] ' \
-             '[%(module)s:%(funcName)s] [%(levelname)s] - %(message)s'
-DATE_FORMAT = '%Y/%m/%d %H:%M:%S %p'
+LOG_FORMAT = (
+    "%(asctime)s [%(threadName)s:%(thread)d] [%(name)s:%(lineno)d] "
+    "[%(module)s:%(funcName)s] [%(levelname)s] - %(message)s"
+)
+DATE_FORMAT = "%Y/%m/%d %H:%M:%S %p"
 
-logging.basicConfig(level=logging.DEBUG,
-                    format=LOG_FORMAT,
-                    datefmt=DATE_FORMAT)
+logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT, datefmt=DATE_FORMAT)
 
-if __name__ == '__main__':
-    logging.debug('debug')
-    logging.info('info')
-    logging.warning('warning')
-    logging.error('error')
-    logging.critical('critical')
+if __name__ == "__main__":
+    logging.debug("debug")
+    logging.info("info")
+    logging.warning("warning")
+    logging.error("error")
+    logging.critical("critical")

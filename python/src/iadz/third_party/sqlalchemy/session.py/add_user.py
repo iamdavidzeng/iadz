@@ -8,13 +8,8 @@ session = Session()
 
 
 def add_user():
-    
-    user = User(
-        id=1,
-        first_name="David",
-        last_name="Zeng",
-        gender="male"
-    )
+
+    user = User(id=1, first_name="David", last_name="Zeng", gender="male")
 
     session.add(user)
     print(f"Add User[1]")

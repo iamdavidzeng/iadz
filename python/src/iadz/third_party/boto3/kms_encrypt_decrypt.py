@@ -34,7 +34,9 @@ class KMSManager:
 
     def decrypt(self, data):
         decoded_ciphertext = base64.b64decode(data.encode("utf-8"))
-        plaintext = self.kms.decrypt(CiphertextBlob=bytes(decoded_ciphertext))["Plaintext"]
+        plaintext = self.kms.decrypt(CiphertextBlob=bytes(decoded_ciphertext))[
+            "Plaintext"
+        ]
         return json.loads(plaintext.decode("utf-8"))
 
 
@@ -53,4 +55,3 @@ if __name__ == "__main__":
 
     decrypt_data = manager.decrypt(encrypt_data)
     print(f"decrypt_data: {decrypt_data} {type(decrypt_data)}")
-

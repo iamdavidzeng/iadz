@@ -48,10 +48,8 @@ def get_payment_items(yaml_path):
                 due_datetime = datetime.utcnow() + timedelta(days=days)
             else:
                 due_datetime = datetime.utcnow()
-            payment_item.update(
-                due_datetime=due_datetime.isoformat()
-            )
-        
+            payment_item.update(due_datetime=due_datetime.isoformat())
+
         if not invoice_datetime:
             pass
         else:
@@ -61,14 +59,11 @@ def get_payment_items(yaml_path):
                 invoice_datetime = datetime.utcnow() + timedelta(days=days)
             else:
                 invoice_datetime = datetime.utcnow()
-            payment_item.update(
-                invoice_datetime=invoice_datetime.isoformat()
-            )
+            payment_item.update(invoice_datetime=invoice_datetime.isoformat())
     return payment_items
 
 
 if __name__ == "__main__":
-
 
     parser = setup_parser()
     args = parser.parse_args()

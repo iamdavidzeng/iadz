@@ -36,4 +36,3 @@ if __name__ == "__main__":
     dummy_service = DummyService()
 
     dummy_service.create_user("david", "zeng")
-

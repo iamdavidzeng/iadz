@@ -2,12 +2,12 @@
 
 
 def first():
-    return 'first'
+    return "first"
 
 
 def second():
-    return 'second'
+    return "second"
 
 
 def _third():
-    return 'third'
+    return "third"

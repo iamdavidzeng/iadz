@@ -7,6 +7,7 @@ class AbstractProductA(ABC):
     """
     申明一个抽象产品类，申明需要实现的方法
     """
+
     @abstractmethod
     def useful_function_a(self) -> str:
         pass
@@ -16,6 +17,7 @@ class ConcreteProductA1(AbstractProductA):
     """
     申明一个具体产品类，并且实现已经申明的行为
     """
+
     def useful_function_a(self) -> str:
         return "The result of the product A1."
 
@@ -24,6 +26,7 @@ class ConcreteProductA2(AbstractProductA):
     """
     同上
     """
+
     def useful_function_a(self) -> str:
         return "The result of the product A2."
 
@@ -32,6 +35,7 @@ class AbstractProductB(ABC):
     """
     申明另外一个抽象产品类，申明自己的行为以及和其他产品有关系的行为
     """
+
     @abstractmethod
     def useful_function_b(self) -> str:
         pass
@@ -45,6 +49,7 @@ class ConcreteProductB1(AbstractProductB):
     """
     申明具体产品，实现行为
     """
+
     def useful_function_b(self) -> str:
         return "The result of the product B1."
 
@@ -57,6 +62,7 @@ class ConcreteProductB2(AbstractProductB):
     """
     同上
     """
+
     def useful_function_b(self) -> str:
         return "The result of the product B2."
 
@@ -69,6 +75,7 @@ class AbstractFactory(ABC):
     """
     申明一个抽象工厂类，申明一系列工厂方法
     """
+
     @abstractmethod
     def create_product_a(self) -> AbstractProductA:
         pass
@@ -82,6 +89,7 @@ class ConcreteFactory1(AbstractFactory):
     """
     申明一个具体工厂类，实现产品的构造方法
     """
+
     def create_product_a(self) -> AbstractProductA:
         return ConcreteProductA1()
 
@@ -93,6 +101,7 @@ class ConcreteFactory2(AbstractFactory):
     """
     同上
     """
+
     def create_product_a(self) -> AbstractProductA:
         return ConcreteProductA2()
 

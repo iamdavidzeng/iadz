@@ -26,7 +26,7 @@ def quick_sort(items, start, end):
     return items
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     demo = [49, 38, 27, 64, 96, 32]
     new = quick_sort(demo, 0, len(demo) - 1)
     print(new)

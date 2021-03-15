@@ -3,12 +3,10 @@ from stripe.stripe_object import StripeObject
 from stripe.util import convert_to_stripe_object
 
 
-
-metadata = convert_to_stripe_object(
-    {"user_id": 1}
-)
+metadata = convert_to_stripe_object({"user_id": 1})
 
 print(metadata)
+
 
 def update_dict(name, gender, metadata):
 

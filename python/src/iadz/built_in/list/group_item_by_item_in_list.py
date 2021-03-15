@@ -55,12 +55,11 @@ students = {
 
 for pi in payment_items:
     if pi["status"] in students[pi["student_id"]].keys():
-        students[pi["student_id"]][pi["status"]].append(pi) 
+        students[pi["student_id"]][pi["status"]].append(pi)
 
 
 payload_lst = [
-    {"student_id": key, "payment_items": value}
-    for key, value in students.items()
+    {"student_id": key, "payment_items": value} for key, value in students.items()
 ]
 
 

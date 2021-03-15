@@ -16,14 +16,14 @@ Base = declarative_base()
 
 class Result(Base):
 
-    __tablename__ = 'model'
+    __tablename__ = "model"
     id = Column(Integer, primary_key=True)
     value = Column(String(64))
 
 
 class Service:
 
-    name = 'service'
+    name = "service"
 
     db = DatabaseSession(Base)
 
@@ -36,7 +36,7 @@ class Service:
 
 @pytest.fixture
 def session():
-    engine = create_engine('sqlite:///:memory:')
+    engine = create_engine("sqlite:///:memory:")
     Base.metadata.create_all(engine)
     session_cls = sessionmaker(bind=engine)
     return session_cls()

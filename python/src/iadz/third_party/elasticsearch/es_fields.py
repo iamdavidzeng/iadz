@@ -119,7 +119,7 @@ def create_search(
 
     if sort:
         s = s.sort(sort)
-    
+
     if source:
         s = s.source(**source)
 

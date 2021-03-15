@@ -13,8 +13,6 @@ class PersonType(Enum):
 
 
 class EnumField(fields.Field):
-
-
     def __init__(self, enum, *args, **kwargs):
         self.enum = enum
         return super().__init__(*args, **kwargs)
@@ -33,7 +31,6 @@ class EnumField(fields.Field):
             return self.enum(value)
         except ValueError as exc:
             raise ValidationError(exc.args[0])
-
 
 
 class PersonCreateSchema(Schema):

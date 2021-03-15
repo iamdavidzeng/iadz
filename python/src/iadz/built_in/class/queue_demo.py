@@ -3,7 +3,6 @@
 
 
 class Queue(object):
-
     def __init__(self, *args):
         self.queue = [*args]
         self.max_length = 5
@@ -34,7 +33,7 @@ class Queue(object):
         return False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     queue = Queue()
     print(queue)
     for i in range(10):

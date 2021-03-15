@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 def rorate(nums: list, k: int):
     """
     按照传入的k值将数组中的元素向右移动k个位置
@@ -13,9 +14,7 @@ def rorate(nums: list, k: int):
     nums[:] = nums[-k:] + nums[:-k]
 
 
-
-
 if __name__ == "__main__":
-    lst = [1,2, 3]
+    lst = [1, 2, 3]
     result = rorate(lst, 10)
     print(f"rorate: {lst}")

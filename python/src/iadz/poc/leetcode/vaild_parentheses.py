@@ -16,7 +16,6 @@ from python_data_structure.stack_demo import Stack
 
 
 class MySolution(object):
-
     def __init__(self):
         self.a = Stack()
         self.b = Stack()
@@ -26,7 +25,7 @@ class MySolution(object):
         :param s: str
         :return: boolean
         """
-        s = s.replace(' ', '')
+        s = s.replace(" ", "")
         mid = len(s) / 2
         a_len = 0
         b_len = -1
@@ -38,13 +37,12 @@ class MySolution(object):
             b_len -= 1
         for i in range(len(self.a)):
             valid = self.a.pop() + self.b.pop()
-            if valid not in ['{}', '()', '[]']:
+            if valid not in ["{}", "()", "[]"]:
                 return False
         return True
 
 
 class NewSolution(object):
-
     def is_valid(self, s):
         """
 
@@ -52,10 +50,10 @@ class NewSolution(object):
         :return:
         """
         stack = []
-        mapping = {'}': '{', ']': '[', ')': '('}
+        mapping = {"}": "{", "]": "[", ")": "("}
         for i in s:
             if mapping.get(i, None):
-                char = stack.pop() if stack else '#'
+                char = stack.pop() if stack else "#"
                 if mapping[i] != char:
                     return False
             else:
@@ -64,7 +62,6 @@ class NewSolution(object):
 
 
 class Solution(object):
-
     def is_valid(self, s):
         """
         :type s: str
@@ -85,7 +82,7 @@ class Solution(object):
 
                 # Pop the topmost element from the stack, if it is non empty
                 # Otherwise assign a dummy value of '#' to the top_element variable
-                top_element = stack.pop() if stack else '#'
+                top_element = stack.pop() if stack else "#"
 
                 # The mapping for the opening bracket in our hash and the top
                 # element of the stack don't match, return False
@@ -100,9 +97,9 @@ class Solution(object):
         return not stack
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     demo = NewSolution()
-    if demo.is_valid('{}()[]'):
-        print('success')
+    if demo.is_valid("{}()[]"):
+        print("success")
     else:
-        print('fail')
+        print("fail")

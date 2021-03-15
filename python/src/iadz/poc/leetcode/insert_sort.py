@@ -14,7 +14,7 @@ def insert_sort(item_list):
         item_list[j] = mid
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     demo = [23, 12, 543, 765, 45]
     insert_sort(demo)
     print(demo)

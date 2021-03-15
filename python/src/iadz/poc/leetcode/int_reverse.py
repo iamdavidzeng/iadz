@@ -7,7 +7,7 @@ def int_reverse(x):
     lst = []
     if x > 0:
         for i in range(1, 33):
-            lst.insert(i, x % (10 ** i) // 10 ** (i-1))
+            lst.insert(i, x % (10 ** i) // 10 ** (i - 1))
             if x // (10 ** i) == 0:
                 break
 
@@ -17,7 +17,7 @@ def int_reverse(x):
         for j in lst:
             a = j * (10 ** (k - 1)) + a
             k += 1
-        if -2 ** 31 < a < 2 ** 31 - 1:
+        if -(2 ** 31) < a < 2 ** 31 - 1:
             return a
         else:
             return 0
@@ -25,7 +25,7 @@ def int_reverse(x):
         x = x * -1
 
         for i in range(1, 33):
-            lst.insert(i, x % (10 ** i) // 10 ** (i-1))
+            lst.insert(i, x % (10 ** i) // 10 ** (i - 1))
             if x // (10 ** i) == 0:
                 break
 
@@ -35,7 +35,7 @@ def int_reverse(x):
         for j in lst:
             a = j * (10 ** (k - 1)) + a
             k += 1
-        if -2 ** 31 < a < 2 ** 31 - 1:
+        if -(2 ** 31) < a < 2 ** 31 - 1:
             return -a
         else:
             return 0

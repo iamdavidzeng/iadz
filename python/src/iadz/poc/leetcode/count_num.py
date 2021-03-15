@@ -6,6 +6,7 @@
 只能使用数学方式实现.
 """
 
+
 def count_num(num):
     a, b = divmod(num, 10)
     if a == 1 or b == 1:
@@ -17,12 +18,12 @@ def count_num(num):
 
 def g1(num):
     sum = 0
-    for i in range(num+1):
+    for i in range(num + 1):
         if count_num(i):
             sum += 1
     return sum
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     demo_num = 122
-    print(g1(demo_num)) 
+    print(g1(demo_num))

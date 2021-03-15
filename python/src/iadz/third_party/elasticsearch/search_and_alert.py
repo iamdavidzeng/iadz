@@ -10,14 +10,7 @@ ELASTICSEARCH_URI = "http://localhost:9200/test/_search"
 SLACK_ROBOT_URI = os.getenv("SLACK_ROBOT_URL")
 
 QUERY_STATEMENT = {
-    "query": {
-        "range": {
-            "context_date": {
-                "gte": "now-60m",
-                "lt": "now"
-            }
-        }
-    }
+    "query": {"range": {"context_date": {"gte": "now-60m", "lt": "now"}}}
 }
 
 
@@ -40,7 +33,7 @@ def send_alert_to_slack():
             "channel": "#platform_alerts",
             "username": "video-syncer",
             "text": alert,
-            "icon_emoji": ":ghost:"
+            "icon_emoji": ":ghost:",
         }
 
         response = requests.post(SLACK_ROBOT_URI, json=payload)

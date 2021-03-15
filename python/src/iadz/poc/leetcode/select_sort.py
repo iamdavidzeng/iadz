@@ -12,7 +12,7 @@ def select_sort(item_list):
         item_list[i], item_list[index] = item_list[index], item_list[i]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     demo = [123, 23, 1, 23, 543, 64]
     select_sort(demo)
     print(demo)

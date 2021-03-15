@@ -64,8 +64,6 @@ def step_impl6(context):
     transaction_info = json.loads(context.text)
 
     context.transaction.pop("id")
-    context.transaction.update({
-        "amount": Decimal(context.transaction["amount"])
-    })
+    context.transaction.update({"amount": Decimal(context.transaction["amount"])})
 
     assert transaction_info == context.transaction

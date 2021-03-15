@@ -12,19 +12,19 @@ Base = declarative_base()
 
 class User(Base):
 
-    __tablename__ = 'user'
+    __tablename__ = "user"
 
     id = Column(String(20), primary_key=True)
     name = Column(String(20))
 
 
-engine = create_engine('mysql+mysqlconnector://root:@localhost:3306/demo')
+engine = create_engine("mysql+mysqlconnector://root:@localhost:3306/demo")
 DBSession = sessionmaker(bind=engine)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     session = DBSession()
-    new_user = Person(first_name='David', last_name="Zeng")
+    new_user = Person(first_name="David", last_name="Zeng")
     session.add(new_user)
     session.commit()
     session.close()

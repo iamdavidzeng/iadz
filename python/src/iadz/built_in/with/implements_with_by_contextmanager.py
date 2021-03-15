@@ -5,7 +5,7 @@
 from contextlib import contextmanager
 
 
-LANGUAGE_CONTEXT_KEY = 'language'
+LANGUAGE_CONTEXT_KEY = "language"
 
 
 @contextmanager
@@ -19,17 +19,13 @@ def language_override(worker_ctx, language):
 
 class Worker(object):
 
-    data = {
-        'name': 'david.zeng',
-        'gender': 'male',
-        'language': 'zh-cn'
-    }
+    data = {"name": "david.zeng", "gender": "male", "language": "zh-cn"}
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     worker = Worker()
 
-    with language_override(worker, 'en-us'):
+    with language_override(worker, "en-us"):
         print(worker.data)
 
     print(worker.data)

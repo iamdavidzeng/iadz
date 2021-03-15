@@ -21,4 +21,3 @@ if __name__ == "__main__":
 
     dump_sm = TimeLine(strict=True).dump(load_sm).data
     print(f"dump_sm: {dump_sm}")
-

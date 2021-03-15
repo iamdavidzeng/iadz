@@ -23,7 +23,7 @@ def merge(left, right):
     return result
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     demo = [23, 523, 51, 216, 87]
     new = merge_sort(demo)
     print(new)

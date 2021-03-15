@@ -3,7 +3,6 @@
 
 
 class Stack(object):
-
     def __init__(self, *args):
         self.__list = list(args)
 
@@ -28,7 +27,7 @@ class Stack(object):
         return True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     demo = Stack(1, 2, 3, 4)
     print(demo)
     demo.push(5)

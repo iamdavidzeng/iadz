@@ -16,19 +16,15 @@ class Student(Schema):
 
     @post_dump()
     def set_alt_text(self, data):
-        data['alt_text'] = data.get('alternate_text')
+        data["alt_text"] = data.get("alternate_text")
 
 
 def validate_input(schema):
-
     def decorator(func):
-
         @wraps(func)
         def wrapper(self, *args, **kwargs):
 
-            print("call_args: ['args': %s, 'kwargs': %s]" % (
-                args, kwargs
-            ))
+            print("call_args: ['args': %s, 'kwargs': %s]" % (args, kwargs))
             args_list = list(args)
             args_list[0] = _validate_data(schema, args[0])
 
@@ -42,14 +38,13 @@ def validate_input(schema):
 def _validate_data(schema, data):
     try:
         data_ = schema(strict=True).dump(data).data
-        print('data_after_load: %s' % data_)
+        print("data_after_load: %s" % data_)
         return data_
     except ValidationError as exc:
         raise ValueError(*exc.args)
 
 
 class DataAfterSchemaLoad(object):
-
     def __init__(self, data):
         self.student = self.create_student(data)
 
@@ -58,16 +53,16 @@ class DataAfterSchemaLoad(object):
         return data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     mock_student = {
-        'id': 1,
-        'name': 'david',
-        'grade': '88',
-        'alternate_text': 'hello, world!',
+        "id": 1,
+        "name": "david",
+        "grade": "88",
+        "alternate_text": "hello, world!",
         # "password": "mock_password",
     }
     student = DataAfterSchemaLoad(data=mock_student)
 
     student_1 = student.create_student(mock_student)
 
-    print('data_after_load: %s' % student_1)
+    print("data_after_load: %s" % student_1)

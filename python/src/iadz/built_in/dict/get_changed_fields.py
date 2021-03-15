@@ -22,6 +22,10 @@ if __name__ == "__main__":
     }
     new_person = old_person.copy()
     new_person.update(
-        {"name": "iamdavidzeng", "city": "Shanghai", "phone": "123333",}
+        {
+            "name": "iamdavidzeng",
+            "city": "Shanghai",
+            "phone": "123333",
+        }
     )
     print(get_changed_fields(new_person, old_person))

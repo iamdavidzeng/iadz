@@ -7,7 +7,6 @@ import pika
 
 
 class RpcProxy(object):
-
     def __init__(self):
         self.connection = pika.BlockingConnection(
             pika.ConnectionParameters(host="localhost"),
@@ -15,7 +14,9 @@ class RpcProxy(object):
         self.routing_key = str(uuid.uuid4())
         self.channel = self.connection.channel()
 
-        result = self.channel.queue_declare("rpc.reply-proxy-%s" % self.routing_key, auto_delete=True)
+        result = self.channel.queue_declare(
+            "rpc.reply-proxy-%s" % self.routing_key, auto_delete=True
+        )
         self.callback_queue = result.method.queue
 
         self.channel.basic_consume(
@@ -23,7 +24,7 @@ class RpcProxy(object):
             on_message_callback=self.on_response,
             auto_ack=True,
         )
-    
+
     def on_response(self, ch, method, props, body):
         if props.correlation_id == self.correlation_id:
             self.response = body
@@ -37,7 +38,11 @@ class RpcProxy(object):
         payload["args"].extend(args)
         payload["kwargs"].update(kwargs)
 
-        self.channel.queue_bind(exchange="nameko-rpc", queue=self.callback_queue, routing_key=self.routing_key)
+        self.channel.queue_bind(
+            exchange="nameko-rpc",
+            queue=self.callback_queue,
+            routing_key=self.routing_key,
+        )
 
         self.channel.basic_publish(
             exchange="nameko-rpc",
@@ -50,7 +55,7 @@ class RpcProxy(object):
                 priority=0,
                 delivery_mode=2,
             ),
-            body=json.dumps(payload)
+            body=json.dumps(payload),
         )
         while self.response is None:
             self.connection.process_data_events()
@@ -60,5 +65,7 @@ class RpcProxy(object):
 rpc = RpcProxy()
 
 print("requesting.......")
-response = rpc.call("bookings", "get_student", **{"email_address": "david.zengzz@student.com"})
+response = rpc.call(
+    "bookings", "get_student", **{"email_address": "david.zengzz@student.com"}
+)
 print("response: %s" % response)

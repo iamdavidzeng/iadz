@@ -6,10 +6,10 @@ import pytest
 
 from mock import Mock
 
+
 @pytest.fixture
 def make_request():
     def make(data, headers=None):
-
         def json_():
             return json.dumps(data).encode("utf-8")
 
@@ -20,4 +20,5 @@ def make_request():
             json=json_,
         )
         return request
+
     return make

@@ -10,6 +10,7 @@ from cryptography.hazmat.primitives.asymmetric import padding
 
 assert sys.version_info >= (3, 4)
 
+
 class CryptoManagement:
     def __init__(self, publish_key, private_key) -> None:
         self.publish_key = serialization.load_ssh_public_key(

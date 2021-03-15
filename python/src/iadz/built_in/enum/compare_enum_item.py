@@ -35,8 +35,10 @@ class Category(Enum):
 def _expand(flow):
 
     arcs = [
-        (previous, next_) for previous, allowed_next
-        in flow.items() for next_ in allowed_next or [None]]
+        (previous, next_)
+        for previous, allowed_next in flow.items()
+        for next_ in allowed_next or [None]
+    ]
 
     def collect(parent):
         for previous, next_ in arcs:

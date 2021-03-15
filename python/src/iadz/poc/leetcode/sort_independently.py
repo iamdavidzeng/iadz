@@ -6,8 +6,8 @@ def insert_sort(lst):
     for i in range(1, len(lst)):
         pivot = lst[i]
         for j in range(i, -1, -1):
-            if pivot < lst[j-1]:
-                lst[j] = lst[j-1]
+            if pivot < lst[j - 1]:
+                lst[j] = lst[j - 1]
             else:
                 break
         lst[j] = pivot
@@ -20,7 +20,7 @@ def insert_sort(lst):
     #         for j in range(len(tool_lst)):
     #             if i < tool_lst[j]:
     #                 tool_lst.insert(j, i)
-    #                 break 
+    #                 break
     return lst
 
 
@@ -29,7 +29,7 @@ def select_sort(lst):
     for i in range(len(lst)):
         tmp = lst[i]
         target = i
-        for j in range(i+1, len(lst)):
+        for j in range(i + 1, len(lst)):
             if tmp > lst[j]:
                 target, tmp = j, lst[j]
         lst[i], lst[target] = tmp, lst[i]
@@ -40,8 +40,8 @@ def select_sort(lst):
 def bubble_sort(lst):
     for i in range(len(lst)):
         for j in range(len(lst) - i - 1):
-            if lst[j] > lst[j+1]:
-                lst[j], lst[j+1] = lst[j+1], lst[j]
+            if lst[j] > lst[j + 1]:
+                lst[j], lst[j + 1] = lst[j + 1], lst[j]
     return lst
 
 
@@ -58,7 +58,6 @@ def quick_sort(lst):
 
 # merge_sort
 def merge_sort(lst):
-
     def merge(left, right):
         result = []
         while len(left) > 0 and len(right) > 0:

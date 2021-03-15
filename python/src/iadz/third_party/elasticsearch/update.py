@@ -34,7 +34,7 @@ ELASTICSEARCH_UPDATE_URL = "http://10.20.2.10:8200/autocomplete/doc/{}/_update"
 def update_city_autocomplete():
 
     for city_name in CITY_NAMES:
-        
+
         # 构造query通过slug查询city
         city_query = {"query": {"bool": {"must": {"term": {"slug": city_name}}}}}
 
@@ -58,7 +58,9 @@ def update_city_autocomplete():
         update_data = {"doc": {"autocomplete": autocomplete_data}}
 
         # 发送请求更新city的autocomplete值
-        response = requests.post(ELASTICSEARCH_UPDATE_URL.format(autocomplete_id), json=update_data)
+        response = requests.post(
+            ELASTICSEARCH_UPDATE_URL.format(autocomplete_id), json=update_data
+        )
 
         print(f"Autocomplete[{city_name}]:\n {update_data}")
         print(f"Get Elasticsearch Response: {response.json()}")

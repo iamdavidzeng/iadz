@@ -3,7 +3,6 @@
 
 
 class Node(object):
-
     def __init__(self, data, pnext=None):
         self.data = data
         self.next = pnext
@@ -13,7 +12,6 @@ class Node(object):
 
 
 class LinkList(object):
-
     def __init__(self):
         self.size = 0
         self.header = None
@@ -90,7 +88,7 @@ class LinkList(object):
         return self.size == 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     link_list = LinkList()
     for i in range(5):
         link_list.append(i)

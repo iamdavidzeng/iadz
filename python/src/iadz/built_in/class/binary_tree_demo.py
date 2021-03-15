@@ -3,7 +3,6 @@
 
 
 class Node(object):
-
     def __init__(self, data, left=None, right=None):
         self.data = data
         self.left = left
@@ -14,7 +13,6 @@ class Node(object):
 
 
 class BinarySearchTree(object):
-
     def __init__(self):
         self.size = 0
         self.root = None
@@ -25,9 +23,9 @@ class BinarySearchTree(object):
     def _dict(self, item):
         if item:
             mid = dict()
-            mid['root'] = item
-            mid['left'] = item.left
-            mid['right'] = item.right
+            mid["root"] = item
+            mid["left"] = item.left
+            mid["right"] = item.right
             print(mid)
         if item.left:
             self._dict(item.left)
@@ -37,7 +35,7 @@ class BinarySearchTree(object):
 
     def __repr__(self):
         self._dict(self.root)
-        return repr('success')
+        return repr("success")
 
     def _left(self, node, item):
         if node.left is None:
@@ -112,7 +110,7 @@ class BinarySearchTree(object):
             self._back(node.right)
             print(node)
 
-# ################other way#####################
+    # ################other way#####################
 
     def add_node(self, item):
         if isinstance(item, Node):
@@ -135,7 +133,7 @@ class BinarySearchTree(object):
             node.right = self._add_child(node.right, item)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     search_tree = BinarySearchTree()
     for i in range(10):
         search_tree.append(i)

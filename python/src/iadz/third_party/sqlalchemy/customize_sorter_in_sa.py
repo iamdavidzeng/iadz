@@ -53,10 +53,8 @@ if __name__ == "__main__":
     result1 = query.all()
     result2 = query.order_by(sorter.asc()).all()
 
-
     print([product.id for product in result1])
     print([product.id for product in result2])
-
 
     session.close()
     DeclarativeBase.metadata.drop_all()

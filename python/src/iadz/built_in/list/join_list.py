@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
-lst_1 = [(4455.0, 'NULL'), (4455.0, 'NULL')]
+lst_1 = [(4455.0, "NULL"), (4455.0, "NULL")]
 
-lst_2 = [(4455.0, 'NULL', 'NULL'), (4455.0, 'NULL', 'NULL')]
+lst_2 = [(4455.0, "NULL", "NULL"), (4455.0, "NULL", "NULL")]
 
 
 lst_3 = ["david.zeng1", "david.zeng2"]

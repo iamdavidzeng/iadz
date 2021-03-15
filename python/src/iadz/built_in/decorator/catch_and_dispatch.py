@@ -10,7 +10,6 @@ class CustomizeException(Exception):
 
 
 def catch_and_dispatch(func):
-
     @wraps(func)
     def wrapper(*args, **kwargs):
 

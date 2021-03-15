@@ -7,9 +7,7 @@ from tqdm import tqdm
 
 
 def setup_parser():
-    parser = argparse.ArgumentParser(
-        description="Bash use to test tqdm"
-    )
+    parser = argparse.ArgumentParser(description="Bash use to test tqdm")
     parser.add_argument(
         "--num",
         help="Spcify the number of item to count",
@@ -17,10 +15,7 @@ def setup_parser():
         required=True,
     )
     parser.add_argument(
-        "--offset",
-        help="Spcify the start position of items",
-        type=int,
-        default=0
+        "--offset", help="Spcify the start position of items", type=int, default=0
     )
     parser.add_argument(
         "--limit",
@@ -31,8 +26,7 @@ def setup_parser():
     return parser
 
 
-class Counter():
-
+class Counter:
     def __init__(self, num, offset, limit):
         self.num = num
         self.offset = offset

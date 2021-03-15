@@ -22,7 +22,7 @@ exchange_nameko_rpc = Exchange(name=EXCHANGE_NAMEKO_RPC_NAME, type="topic")
 queue_get_commute_times = Queue(
     exchange=exchange_commute_times,
     routing_key=ROUTING_KEY_GET_COMMUTE_TIME_NAME,
-    name="fed.{}".format(ROUTING_KEY_GET_COMMUTE_TIME_NAME)
+    name="fed.{}".format(ROUTING_KEY_GET_COMMUTE_TIME_NAME),
 )
 
 queue_consume_commute_times = Queue(
@@ -33,7 +33,6 @@ queue_consume_commute_times = Queue(
 
 
 class Consumer(NamekoConsumer):
-
     def setup(self):
 
         self.queue = queue_consume_commute_times
@@ -41,7 +40,6 @@ class Consumer(NamekoConsumer):
 
 
 def consumer_factory(prefetch_count):
-
     class MessageConsumer(Consumer):
 
         queue_consumer = QueueConsumer(prefetch_count)
@@ -60,14 +58,10 @@ class PublishService:
     name = "publish"
 
     commute_time_publisher = Publisher(
-        exchange=exchange_commute_times,
-        declare=[queue_consume_commute_times]
+        exchange=exchange_commute_times, declare=[queue_consume_commute_times]
     )
 
-    nameko_rpc_publisher = Publisher(
-        exchange=exchange_nameko_rpc,
-        declare=[]
-    )
+    nameko_rpc_publisher = Publisher(exchange=exchange_nameko_rpc, declare=[])
 
     @rpc
     def publish_commute_times(self, payload):
@@ -82,4 +76,3 @@ class PublishService:
     def handle_commute_time_reply(self, payload):
 
         print(payload)
-

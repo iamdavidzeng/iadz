@@ -7,25 +7,21 @@ import sys
 import argparse
 
 
-ACTION_CHOICES = ['count', 'fix']
+ACTION_CHOICES = ["count", "fix"]
+
 
 def setup_parser():
-    parser = argparse.ArgumentParser(
-        "Make a test about use parser."
-    )
+    parser = argparse.ArgumentParser("Make a test about use parser.")
     parser.add_argument(
         "--action",
         choices=ACTION_CHOICES,
-        help="count the number of student or fix it."
+        help="count the number of student or fix it.",
     )
-    parser.add_argument(
-        "--limit",
-        help="Number of records per pair."
-    )
+    parser.add_argument("--limit", help="Number of records per pair.")
     return parser
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = setup_parser()
     args = parser.parse_args()
 

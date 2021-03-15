@@ -11,7 +11,6 @@ class PaymentMethod(declarative_base()):
     id = Column(Integer, primary_key=True)
     external_id = Column(String(64), nullable=True)
 
-
     def __init__(self, default, backup):
 
         self.default_payment_method_id = default
@@ -49,5 +48,4 @@ if __name__ == "__main__":
 
     _send_bind_or_unbind_email(payment_method_2, payment_method_1)
 
-    
     print(payment_method_1.id, payment_method_1.external_id)

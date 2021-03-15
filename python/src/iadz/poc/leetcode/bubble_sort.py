@@ -12,7 +12,7 @@ def bubble(item_list):
                 item_list[num] = mid
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     demo = [123, 5235, 34, 23, 5, 3]
     bubble(demo)
     print(demo)

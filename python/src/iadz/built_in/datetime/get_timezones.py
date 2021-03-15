@@ -11,4 +11,3 @@ print(
         if now.astimezone(tz).utcoffset() == utc_offset
     }
 )
-

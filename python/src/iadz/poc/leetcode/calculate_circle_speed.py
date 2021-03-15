@@ -54,5 +54,5 @@ if __name__ == "__main__":
 
     print(
         "interval_1: %s" % interval_1,
-        "interval_2: %s" % interval_2, 
+        "interval_2: %s" % interval_2,
     )

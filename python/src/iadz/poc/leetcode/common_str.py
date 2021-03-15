@@ -20,7 +20,7 @@ def get_common_str(l1):
         ret += value
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     l1 = ["abc", "ac", "d"]
     rsp = get_common_str(l1)
     print(rsp)

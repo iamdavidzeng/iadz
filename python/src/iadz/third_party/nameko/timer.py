@@ -2,6 +2,7 @@
 
 from nameko.timer import timer
 
+
 class AlertService:
 
     name = "platform_alert"

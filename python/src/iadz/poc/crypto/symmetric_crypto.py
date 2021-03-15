@@ -13,7 +13,10 @@ def encrypt(secret_key, data):
     secret_key = secret_key.encode("utf-8")
     encryptor = AES.new(key=secret_key, mode=AES.MODE_CBC)
     cipher_text = encryptor.encrypt(pad(data.encode("utf-8"), AES.block_size))
-    return base64.b64encode(cipher_text).decode("utf-8"), base64.b64encode(encryptor.iv).decode("utf-8")
+    return (
+        base64.b64encode(cipher_text).decode("utf-8"),
+        base64.b64encode(encryptor.iv).decode("utf-8"),
+    )
 
 
 def decrypt(secret_key, data, iv):
@@ -46,9 +49,5 @@ if __name__ == "__main__":
         iv1,
     )
     print(f"decrypted1: {decrypted1}")
-    decrypted2 = decrypt(
-        secret_key,
-        encrypted2,
-        iv2
-    )
+    decrypted2 = decrypt(secret_key, encrypted2, iv2)
     print(f"decrypted2: {decrypted2}")
