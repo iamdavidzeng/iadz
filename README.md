@@ -2,9 +2,9 @@
 Daily coding...
 
 ```
-git clone git@github.com:iamdavidzeng/daily-record.git
+git clone git@github.com:iamdavidzeng/iadz.git
 
-cd /path/to/daily-record
+cd /path/to/iadz/python
 ```
 
 ## Prerequisites
@@ -34,7 +34,7 @@ pip install -e ".[dev]"
         "python.linting.pylintEnabled": false,
         "python.linting.flake8Enabled": true,
         "python.linting.enabled": true,
-        "python.pythonPath": "${workspaceFolder}/.env/bin/python3.6"
+        "python.pythonPath": "${workspaceFolder}/python/.env/bin/python3.6"
     }
 then you are able to use you virtualenv in VS-Code.
 ```
