@@ -66,12 +66,22 @@ class Worker:
     def close(self):
         self.session.close()
 
+    def dial(self):
+        query = self.session.execute(
+            f"""
+            SELECT f.*
+            FROM failed_events f
+            LIMIT 1
+            """
+        )
+        print(f"{query.fetchall()}")
+
     def main(self):
         query = self.session.execute(
             f"""
-            SELECT f.event_name, f.record_payload
-            FROM failed_events f	
-            WHERE 
+            SELECT f.event_name, f.record_payload‰
+            FROM failed_events f
+            WHERE
                 f.subscription_id={self.subscription_id}
                 AND (
                     f.record_id={self.booking_id}
@@ -98,8 +108,6 @@ class Worker:
 
                 count += 1
 
-        self.close()
-
 
 if __name__ == "__main__":
 
@@ -113,7 +121,8 @@ if __name__ == "__main__":
         file_name=args_.file_name,
         offset=args_.offset,
     )
-
-    worker.main()
+    worker.dial()
+    # worker.main()
+    worker.close()
 
     print("All done! ✨ 🍰 ✨")
