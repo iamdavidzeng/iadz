@@ -79,7 +79,7 @@ class Worker:
     def main(self):
         query = self.session.execute(
             f"""
-            SELECT f.event_name, f.record_payload‰
+            SELECT f.event_name, f.record_payload
             FROM failed_events f
             WHERE
                 f.subscription_id={self.subscription_id}
@@ -88,6 +88,7 @@ class Worker:
                     OR (event_name="payment_item/created" AND record_payload->>"$.paymentItem.bookingId"={self.booking_id})
                     OR (event_name="payment_item/status_updated" AND record_payload->>"$.paymentItem.bookingId"={self.booking_id})
                     OR (event_name="transaction_record/created" AND record_payload->>"$.transactionRecord.bookingId"={self.booking_id})
+                    OR (event_name="credit_transaction_record/created" AND record_payload->>"$.creditTransactionRecord.bookingId"={self.booking_id})
                 )
                 AND f.id > {self.offset or 0}
             ;
@@ -122,7 +123,7 @@ if __name__ == "__main__":
         offset=args_.offset,
     )
     worker.dial()
-    # worker.main()
+    worker.main()
     worker.close()
 
     print("All done! ✨ 🍰 ✨")
