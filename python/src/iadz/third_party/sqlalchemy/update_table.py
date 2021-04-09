@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import sys
+import time
 from sqlalchemy import create_engine, Column, Integer
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
@@ -23,9 +25,22 @@ def update_table():
 
     session = Session()
 
-    query = session.query(Balance).update({Balance.c: Balance.c + 1})
+    # 1st way
+    item = session.query(Balance).with_for_update().get(1)
+    item.c += 1
 
-    print(query)
+    # 2nd way
+    # item = (
+    #     session.query(Balance)
+    #     .filter(Balance.id == 1)
+    #     .update({Balance.c: Balance.c + 1})
+    # )
+
+    time.sleep(int(sys.argv[1]))
+
+    session.commit()
+
+    print(item)
 
 
 if __name__ == "__main__":
