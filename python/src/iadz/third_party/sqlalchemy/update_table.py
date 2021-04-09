@@ -26,8 +26,10 @@ def update_table():
     session = Session()
 
     # 1st way
-    item = session.query(Balance).with_for_update().get(1)
-    item.c += 1
+    item = session.query(Balance).filter(Balance.id == 100).with_for_update().one()
+
+    c = item.c + 1
+    item.c = c
 
     # 2nd way
     # item = (
