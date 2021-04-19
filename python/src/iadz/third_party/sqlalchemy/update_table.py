@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
 import time
+
+import eventlet
 from sqlalchemy import create_engine, Column, Integer
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
@@ -21,14 +22,20 @@ class Balance(Base):
     c = Column(Integer)
 
 
-def update_table():
-
+def update_without_yield_control(sleep: int = 0):
+    """
+    Output:
+        >>> I got sleep duration: 5
+        >>> 5
+        >>> I got sleep duration: 0
+        >>> 0
+    """
+    print(f"I got sleep duration: {sleep}")
     session = Session()
 
     # 1st way
     item = session.query(Balance).filter(Balance.id == 1).with_for_update().one()
-
-    c = item.c + int(sys.argv[2])
+    c = item.c + 1
     item.c = c
 
     # 2nd way
@@ -38,12 +45,40 @@ def update_table():
     #     .update({Balance.c: Balance.c + 1})
     # )
 
-    time.sleep(int(sys.argv[1]))
-
+    time.sleep(sleep)
     session.commit()
+    return sleep
 
-    print(item)
+
+def update_with_yield_control(sleep: int = 0):
+    """
+    Output:
+        >>> I got sleep duration: 5
+        >>> I got sleep duration: 0
+        >>> raise TimeoutError()
+    """
+    print(f"I got sleep duration: {sleep}")
+    session = Session()
+
+    # 1st way
+    item = session.query(Balance).filter(Balance.id == 1).with_for_update().one()
+    c = item.c + 1
+    item.c = c
+
+    # 2nd way
+    # item = (
+    #     session.query(Balance)
+    #     .filter(Balance.id == 1)
+    #     .update({Balance.c: Balance.c + 1})
+    # )
+
+    eventlet.sleep(sleep)
+    session.commit()
+    return sleep
 
 
 if __name__ == "__main__":
-    update_table()
+    pool = eventlet.GreenPool(200)
+
+    for result in pool.imap(update_without_yield_control, [5, 0]):
+        print(result)
