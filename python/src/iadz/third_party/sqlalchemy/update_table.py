@@ -26,9 +26,9 @@ def update_table():
     session = Session()
 
     # 1st way
-    item = session.query(Balance).filter(Balance.id == 100).with_for_update().one()
+    item = session.query(Balance).filter(Balance.id == 1).with_for_update().one()
 
-    c = item.c + 1
+    c = item.c + int(sys.argv[2])
     item.c = c
 
     # 2nd way
