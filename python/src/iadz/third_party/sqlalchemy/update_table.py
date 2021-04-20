@@ -55,7 +55,7 @@ def update_with_yield_control(sleep: int = 0):
     Output:
         >>> I got sleep duration: 5
         >>> I got sleep duration: 0
-        >>> raise TimeoutError()
+        >>> _mysql_connector.MySQLInterfaceError: Lock wait timeout exceeded; try restarting transaction
     """
     print(f"I got sleep duration: {sleep}")
     session = Session()
@@ -80,5 +80,5 @@ def update_with_yield_control(sleep: int = 0):
 if __name__ == "__main__":
     pool = eventlet.GreenPool(200)
 
-    for result in pool.imap(update_without_yield_control, [5, 0]):
+    for result in pool.imap(update_with_yield_control, [5, 0]):
         print(result)
