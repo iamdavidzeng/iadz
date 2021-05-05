@@ -4,15 +4,15 @@ from setuptools import find_packages, setup
 
 
 setup(
-    name="tutorial",
+    name="iadz",
     version="0.0.1",
-    description="Use to manage python_tutorial",
+    description="Use to manage iadz",
     packages=find_packages("src", exclude=["test"]),
     package_dir={"": "src"},
     install_requires=[
        "alembic==1.0.7",
        "requests==2.21.0",
-       "PyYAML==5.1",
+       "PyYAML>=5.4",
        "SQLAlchemy==1.3.3",
        "nameko==3.0.0-rc8",
        "marshmallow==2.19.5",

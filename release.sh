@@ -6,7 +6,7 @@
 
 RELEASE_TYPE=$1
 
-API_URL="https://api.github.com/repos/iamdavidzeng/daily_record"
+API_URL="https://api.github.com/repos/iamdavidzeng/iadz"
 
 # Ignore stage
 
@@ -38,5 +38,5 @@ EOF
 
 curl -XPOST \
 -H "Authorization: token $GITHUB_AUTH_TOKEN" \
--d "$REQUEST_BODY" "$API_RUL/releases"
+-d "$REQUEST_BODY" "$API_URL/releases"
 
