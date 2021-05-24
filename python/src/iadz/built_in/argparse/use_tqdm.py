@@ -10,12 +10,12 @@ def setup_parser():
     parser = argparse.ArgumentParser(description="Bash use to test tqdm")
     parser.add_argument(
         "--num",
-        help="Spcify the number of item to count",
+        help="Specify the number of item to count",
         type=int,
         required=True,
     )
     parser.add_argument(
-        "--offset", help="Spcify the start position of items", type=int, default=0
+        "--offset", help="Specify the start position of items", type=int, default=0
     )
     parser.add_argument(
         "--limit",
