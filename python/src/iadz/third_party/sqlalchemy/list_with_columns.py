@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import create_engine, Column, Integer
-from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy.orm import joinedload, relationship, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql.schema import ForeignKey
-from sqlalchemy.sql.sqltypes import DateTime
+from sqlalchemy.sql.sqltypes import DateTime, String
 
 
 engine = create_engine("mysql+mysqlconnector://root:@localhost:3306/demo", echo=True)
@@ -18,6 +18,9 @@ class Foo(Base):
 
     __tablename__ = "foo"
     id = Column(Integer, primary_key=True)
+    name = Column(String(16), nullable=True)
+
+    bazs = relationship("Baz", secondary="bar")
 
 
 class Bar(Base):
@@ -25,37 +28,36 @@ class Bar(Base):
     __tablename__ = "bar"
     id = Column(Integer, primary_key=True)
     foo_id = Column(Integer, ForeignKey("foo.id"))
-    amount = Column(Integer, nullable=False)
-    deleted_at = Column(DateTime, nullable=True)
+    baz_slug = Column(String(16), ForeignKey("baz.slug"))
 
-    foo = relationship(
-        "Foo",
-        backref="bars",
-        primaryjoin="and_(Bar.foo_id == Foo.id, Bar.deleted_at == None)",
-    )
+    bazs = relationship("Baz")
 
 
-class DummyService:
-    def __init__(self) -> None:
-        self.session = Session()
-        self.model = Bar
+class Baz(Base):
+
+    __tablename__ = "baz"
+    slug = Column(String(16), primary_key=True)
+
+
+class Storage:
+    def __init__(self, session: Session(), model: any) -> None:
+        self.session = session
+        self.model = model
 
     @property
     def query(self):
         return self.session.query(self.model)
 
-    def add_bar(self, data: dict):
-        resource = self.session.add(self.model(**data))
-        self.session.commit()
+    def insert(self, data: dict) -> object:
+        data = self.model(**data)
+        resource = self.session.add(data)
         return resource
 
-    def get_bar(self, id_: int):
+    def get(self, id_: int) -> object:
+        resource = self.query.filter(self.model.id == id_).one()
+        return resource
 
-        Bar = self.query.filter(self.model.id == id_)
-
-        return Bar.one()
-
-    def list_bars(
+    def list(
         self,
         filters: dict,
         order_by: dict = None,
@@ -80,9 +82,10 @@ if __name__ == "__main__":
 
     Base.metadata.create_all(engine)
 
-    dummy = DummyService()
+    session = Session()
 
-    query = dummy.session.query(Foo).join(Bar).with_entities(Foo.id, Bar.id, Bar.amount)
+    storage = Storage(session, Foo)
 
-    for foo_id, bar_id, bar_amount in query.all():
-        print(foo_id, bar_id, bar_amount)
+    query = storage.query.join(Foo.bazs).with_entities(Foo.id, Baz.slug)
+
+    print(query.all())
