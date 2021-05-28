@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import create_engine, Column, Integer
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.sql.schema import ForeignKey
+from sqlalchemy.sql.sqltypes import DateTime
+import logging
+
+
+logging.basicConfig()
+logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
 
 
 engine = create_engine("mysql+mysqlconnector://root:@localhost:3306/demo")
@@ -12,13 +19,25 @@ Session = sessionmaker(bind=engine)
 Base = declarative_base()
 
 
+class Booking(Base):
+
+    __tablename__ = "bookings"
+    id = Column(Integer, primary_key=True)
+
+
 class Balance(Base):
 
-    __tablename__ = "balance"
-
+    __tablename__ = "balances"
     id = Column(Integer, primary_key=True)
-    c = Column(Integer)
-    amount = Column(Integer)
+    booking_id = Column(Integer, ForeignKey("bookings.id"))
+    amount = Column(Integer, nullable=False)
+    deleted_at = Column(DateTime, nullable=True)
+
+    booking = relationship(
+        "Booking",
+        backref="balances",
+        primaryjoin="and_(Balance.booking_id == Booking.id, Balance.deleted_at == None)",
+    )
 
 
 class DummyService:
@@ -64,9 +83,15 @@ class DummyService:
 
 if __name__ == "__main__":
 
+    Base.metadata.create_all(engine)
+
     dummy = DummyService()
 
-    balances = dummy.list_balances({"id": 10}, columns=["id"])
+    query = (
+        dummy.session.query(Booking)
+        .join(Balance)
+        .with_entities(Booking.id, Balance.id, Balance.amount)
+    )
 
-    for b in balances:
-        print(type(b))
+    for b in query.all():
+        print(b)
