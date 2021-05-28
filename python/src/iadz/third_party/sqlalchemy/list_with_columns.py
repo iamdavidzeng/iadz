@@ -5,62 +5,57 @@ from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.sql.sqltypes import DateTime
-import logging
 
 
-logging.basicConfig()
-logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
-
-
-engine = create_engine("mysql+mysqlconnector://root:@localhost:3306/demo")
+engine = create_engine("mysql+mysqlconnector://root:@localhost:3306/demo", echo=True)
 Session = sessionmaker(bind=engine)
 
 
 Base = declarative_base()
 
 
-class Booking(Base):
+class Foo(Base):
 
-    __tablename__ = "bookings"
+    __tablename__ = "foo"
     id = Column(Integer, primary_key=True)
 
 
-class Balance(Base):
+class Bar(Base):
 
-    __tablename__ = "balances"
+    __tablename__ = "bar"
     id = Column(Integer, primary_key=True)
-    booking_id = Column(Integer, ForeignKey("bookings.id"))
+    foo_id = Column(Integer, ForeignKey("foo.id"))
     amount = Column(Integer, nullable=False)
     deleted_at = Column(DateTime, nullable=True)
 
-    booking = relationship(
-        "Booking",
-        backref="balances",
-        primaryjoin="and_(Balance.booking_id == Booking.id, Balance.deleted_at == None)",
+    foo = relationship(
+        "Foo",
+        backref="bars",
+        primaryjoin="and_(Bar.foo_id == Bar.id, Bar.deleted_at == None)",
     )
 
 
 class DummyService:
     def __init__(self) -> None:
         self.session = Session()
-        self.model = Balance
+        self.model = Bar
 
     @property
     def query(self):
         return self.session.query(self.model)
 
-    def add_balance(self, data: dict):
+    def add_bar(self, data: dict):
         resource = self.session.add(self.model(**data))
         self.session.commit()
         return resource
 
-    def get_balance(self, id_: int):
+    def get_bar(self, id_: int):
 
-        balance = self.query.filter(self.model.id == id_)
+        Bar = self.query.filter(self.model.id == id_)
 
-        return balance.one()
+        return Bar.one()
 
-    def list_balances(
+    def list_bars(
         self,
         filters: dict,
         order_by: dict = None,
@@ -87,11 +82,7 @@ if __name__ == "__main__":
 
     dummy = DummyService()
 
-    query = (
-        dummy.session.query(Booking)
-        .join(Balance)
-        .with_entities(Booking.id, Balance.id, Balance.amount)
-    )
+    query = dummy.session.query(Foo).join(Bar).with_entities(Foo.id, Bar.id, Bar.amount)
 
-    for b in query.all():
-        print(b)
+    for foo_id, bar_id, bar_amount in query.all():
+        print(foo_id, bar_id, bar_amount)
