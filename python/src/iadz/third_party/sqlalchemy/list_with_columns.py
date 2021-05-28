@@ -31,7 +31,7 @@ class Bar(Base):
     foo = relationship(
         "Foo",
         backref="bars",
-        primaryjoin="and_(Bar.foo_id == Bar.id, Bar.deleted_at == None)",
+        primaryjoin="and_(Bar.foo_id == Foo.id, Bar.deleted_at == None)",
     )
 
 
