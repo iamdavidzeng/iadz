@@ -27,8 +27,25 @@ type MsgCenterLandlordContact implements 123 {
 
 def convert(match):
     for group in match.groups():
-        print(group.split("\n"))
-    return "1"
+        lines = group.split("\n")
+        for index, line in enumerate(lines):
+            prefix = ""
+            if index == 0:
+                prefix = "@ObjectType()\n"
+                line_list = line.split(" ")
+                line = " ".join(["export class", line_list[1], line_list[-1], "\n"])
+            
+            if ":" in line:
+                type_ = line.strip().split(" ")[1]
+                prefix = f"@Field(() => {type_})\n"
+                if "!" in line:
+                    type_ = type_.replace("!", "")
+                    nullable = "{ nullable: false }"
+                    prefix = f"@Field(() => {type_}, {nullable})\n"
+
+            new_line = prefix + line.strip().replace("!", "").replace("ID", "number").lower() + "\n"
+            lines[index] = new_line
+    return "\n".join(lines)
 
 
 parser = re.compile(r"(\w+[\s\w]+\{[\s\w\n\:\!]+\})")
