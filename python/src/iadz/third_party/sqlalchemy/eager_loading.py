@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from iadz.third_party.sqlalchemy.models import session, Storage, Foo, Baz
-from sqlalchemy.orm import contains_eager, joinedload, selectinload
+from iadz.third_party.sqlalchemy.models import Baz, session, Storage, Foo
+from sqlalchemy.orm import contains_eager, joinedload, selectinload, load_only
 
 
 class Loader:
@@ -16,7 +16,10 @@ class Loader:
 
     def joinedload(self):
         resource = (
-            self.query.options(joinedload(Foo.bazs)).filter(Foo.name == "david").one()
+            self.query.options(joinedload(Foo.bazs, innerjoin=True).load_only(Baz.slug))
+            .options(load_only(Foo.id, Foo.name))
+            .filter(Foo.name == "david")
+            .one()
         )
         return resource
 
@@ -34,7 +37,7 @@ if __name__ == "__main__":
     storage = Storage(session, Foo)
     loader = Loader(storage)
 
-    foo = loader.selectinload()
+    foo = loader.joinedload()
 
     print(foo)
 
