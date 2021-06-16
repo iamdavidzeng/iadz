@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from iadz.third_party.sqlalchemy.models import Baz, session, Storage, Foo
-from sqlalchemy.orm import contains_eager, joinedload, selectinload, load_only
+from sqlalchemy.orm import (
+    contains_eager,
+    joinedload,
+    selectinload,
+    load_only,
+    subqueryload,
+)
 
 
 class Loader:
@@ -32,12 +38,18 @@ class Loader:
         )
         return resource
 
+    def subqueryload(self):
+        resource = (
+            self.query.options(subqueryload(Foo.bazs)).filter(Foo.name == "david").one()
+        )
+        return resource
+
 
 if __name__ == "__main__":
     storage = Storage(session, Foo)
     loader = Loader(storage)
 
-    foo = loader.joinedload()
+    foo = loader.subqueryload()
 
     print(foo)
 
