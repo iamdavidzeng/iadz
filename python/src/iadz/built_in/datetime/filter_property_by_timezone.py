@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from datetime import date, datetime, time
+from datetime import datetime, time
 
 import pytz
 
@@ -29,10 +29,7 @@ property_ids = list(
     )
     for property_ in properties
     if min_time
-    # <= datetime.now(pytz.utc).astimezone(pytz.timezone(property_["timezone"])).time()
-    <= pytz.utc.localize(datetime(2020, 9, 23, 16, 00, 0))
-    .astimezone(pytz.timezone(property_["timezone"]))
-    .time()
+    <= datetime.now(pytz.utc).astimezone(pytz.timezone(property_["timezone"])).time()
     < max_time
 )
 

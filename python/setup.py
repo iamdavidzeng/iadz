@@ -25,6 +25,7 @@ setup(
        "boto3==1.14.25",
        "pycryptodome==3.9.8",
        "tqdm==4.54.0",
+       "pytz>=2021.1",
     ],
     extras_require={
         "dev": [
