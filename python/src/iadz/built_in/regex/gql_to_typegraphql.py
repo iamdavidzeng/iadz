@@ -45,13 +45,11 @@ def convert(match):
             if ":" in line:
                 type_ = line.strip().split(" ")[1]
                 prefix = f"  @Field(() => {type_})\n  "
+
                 if "!" in line:
                     type_ = type_.replace("!", "")
                     nullable = "{ nullable: false }"
                     prefix = f"  @Field(() => {type_}, {nullable})\n  "
-                
-                if "[" in prefix:
-                    prefix = prefix.replace("[", "").replace("]", "[]")
 
             new_line = (
                 prefix
@@ -60,6 +58,8 @@ def convert(match):
                 .replace("ID", "string")
                 .replace("Int", "number")
                 .replace("NonEmptyString", "string")
+                .replace("[", "")
+                .replace("]", "[]")
                 + "\n"
             )
             lines[index] = new_line
