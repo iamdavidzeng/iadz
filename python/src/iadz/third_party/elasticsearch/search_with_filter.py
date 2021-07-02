@@ -3,7 +3,7 @@ import json
 
 from elasticsearch_dsl.query import Q
 
-from es_fields import create_search, create_connection
+from iadz.third_party.elasticsearch.es_fields import create_connection, create_search
 
 
 if __name__ == "__main__":

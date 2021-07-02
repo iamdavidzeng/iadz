@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from es_fields import create_connection, Post, INDEX
+
+from iadz.third_party.elasticsearch.es_fields import INDEX, Post, create_connection
 
 
 if __name__ == "__main__":
@@ -15,7 +16,21 @@ if __name__ == "__main__":
                 {
                     "author": "iamdavidzeng",
                     "content": "foo",
-                }
+                    "price_min": 10,
+                    "price_max": 100,
+                },
+                {
+                    "author": "iamdavidzeng",
+                    "content": "foo",
+                    "price_min": 100,
+                    "price_max": 200,
+                },
+                {
+                    "author": "iamdavidzeng",
+                    "content": "foo",
+                    "price_min": 50,
+                    "price_max": 100,
+                },
             ],
         },
         {
@@ -27,6 +42,8 @@ if __name__ == "__main__":
                 {
                     "author": "iamdavidzeng",
                     "content": "bar",
+                    "price_min": 10,
+                    "price_max": 100,
                 }
             ],
         },
@@ -39,10 +56,13 @@ if __name__ == "__main__":
                 {
                     "author": "iamdavidzeng",
                     "content": "baz",
+                    "price_min": 10,
+                    "price_max": 100,
                 }
             ],
         },
     ]
 
     for id_, post in enumerate(posts):
-        Post(**post, meta={"id": id_}).save(index=INDEX)
+        Post(**post, meta={"id": id_ + 1}).save(using=client, index=INDEX)
+        print(f"Post: {id_} put into es successfully!")

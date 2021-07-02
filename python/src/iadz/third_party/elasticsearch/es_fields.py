@@ -13,6 +13,7 @@ from elasticsearch_dsl import (
     Text,
     connections,
     Index,
+    Float,
 )
 from elasticsearch_dsl.document import MetaField
 from elasticsearch_dsl.field import Keyword
@@ -35,6 +36,8 @@ class Comment(InnerDoc):
     author = Text()
     content = Text()
     created_at = Date()
+    price_min = Float()
+    price_max = Float()
 
     def age(self):
         return datetime.now() - self.created_at

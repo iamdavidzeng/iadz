@@ -3,7 +3,8 @@
 import json
 from elasticsearch_dsl.query import Q
 from elasticsearch_dsl.search import Search
-from es_fields import create_search, create_connection
+
+from iadz.third_party.elasticsearch.es_fields import create_connection, create_search
 
 
 def create_sort() -> Search:
