@@ -29,7 +29,19 @@ class Unit(Schema):
         return data
 
 
-class Property(Schema):
+class SimpleProperty(Schema):
+
+    pass
+
+    @post_dump
+    def get1(self, data):
+
+        print("=========simple_property==========")
+
+        return data
+
+
+class Property(SimpleProperty):
 
     units = fields.Nested(Unit, many=True)
 
