@@ -3,6 +3,9 @@ Liskov Substitution Principle
 """
 
 
+from typing import List
+
+
 class Animal:
     def leg_count(self):
         pass
@@ -16,7 +19,7 @@ class Lion(Animal):
 animals = [Lion()]
 
 
-def animal_leg_count(animals: list):
+def animal_leg_count(animals: List[Animal]):
     for animal in animals:
         print(animal.leg_count())
 
