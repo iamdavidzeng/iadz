@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import * as Express from 'express';
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema, Query, Resolver } from "type-graphql";
+import { authChecker } from './auth-checker';
 
 
 @Resolver()
@@ -13,14 +14,26 @@ class HelloResolver {
 }
 
 async function main() {
+
     const schema = await buildSchema({
         resolvers: [HelloResolver],
+        authChecker,
     });
 
     const app = Express()
 
     const server = new ApolloServer({
         schema,
+        context: () => {
+            const ctx = {
+                user: {
+                    id: 1,
+                    name: "Sample user",
+                    roles: ["REGULAR"],
+                }
+            }
+            return ctx;
+        }
     })
 
     server.applyMiddleware({ app })
