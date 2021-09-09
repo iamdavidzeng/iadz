@@ -1,22 +1,15 @@
 import 'reflect-metadata';
 import * as Express from 'express';
 import { ApolloServer } from "apollo-server-express";
-import { buildSchema, Query, Resolver } from "type-graphql";
+import { buildSchema } from "type-graphql";
 import { authChecker } from './auth-checker';
-
-
-@Resolver()
-class HelloResolver {
-    @Query(() => String)
-    async hello() {
-        return "Hello, world!";
-    }
-}
+import { ExampleResolver } from './resolvers';
+import { Context } from 'apollo-server-core';
 
 async function main() {
 
     const schema = await buildSchema({
-        resolvers: [HelloResolver],
+        resolvers: [ExampleResolver],
         authChecker,
     });
 
@@ -25,7 +18,7 @@ async function main() {
     const server = new ApolloServer({
         schema,
         context: () => {
-            const ctx = {
+            const ctx: Context = {
                 user: {
                     id: 1,
                     name: "Sample user",
