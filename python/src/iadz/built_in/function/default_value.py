@@ -7,3 +7,5 @@ def foo(id: int = 10):
 
 
 foo(id=None)
+
+foo(1)
