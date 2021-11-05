@@ -71,5 +71,5 @@ class RightAsync:
 
 
 if __name__ == "__main__":
-    for cls_ in [WrongAsync, RightAsync]:
-        cls_().main()
+    for Cls in [WrongAsync, RightAsync]:
+        Cls().main()
