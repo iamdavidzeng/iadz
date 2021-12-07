@@ -1,10 +1,24 @@
-<script setup>
+<script>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import Card from './components/Card.vue';
-import List from './components/List.vue';
-import Text from './components/Text.vue';
-import Message from './components/Message.vue';
+import Card from "./components/Card.vue";
+import List from "./components/List.vue";
+import Text from "./components/Text.vue";
+import Message from "./components/Message.vue";
+import { mapActions } from "vuex";
+
+export default {
+  components: {
+    Card,
+    List,
+    Text,
+    Message,
+  },
+  methods: mapActions(["initData"]),
+  created() {
+    this.initData();
+  },
+};
 </script>
 
 <template>

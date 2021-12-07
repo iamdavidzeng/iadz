@@ -22,14 +22,16 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
+
 export default {
   name: "Card",
-  computed: {
-    ...MapGetters(["user", "filterKey"]),
-  },
+  computed: mapState([
+    'user',
+    'filterKey',
+  ]),
   methods: {
-    ...MapActions(["search"]),
+    ...mapActions(["search"]),
     onKeyup(e) {
       this.search(e.target.value);
     },
