@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
+import axios from "axios";
 
-const now = new Date();
 const state = {
   user: {
     name: "",
@@ -13,13 +13,7 @@ const state = {
 };
 
 const mutations = {
-  INIT_DATA(state, username) {
-    let data = localStorage.getItem("vite-chat-session");
-    console.log(data);
-    if (data) {
-      state.sessions = JSON.parse(data);
-    }
-
+  INIT_DATA(state, { username, onlineUsers }) {
     if (typeof WebSocket === "undefined") {
       console.log("WebSocket is not supported by your browser.");
       return;
@@ -31,12 +25,29 @@ const mutations = {
 
       state.socket.onopen = function () {
         console.log("connected");
+        // set user info and display online users.
         state.user = { name: username, img: username + ".jpeg" };
+        if (onlineUsers.length > 0) {
+          onlineUsers.forEach((username) => {
+            if (username != state.user.name) {
+              state.sessions.push({
+                id: state.sessions.length + 1,
+                user: {
+                  name: username,
+                  img: username + ".jpeg",
+                },
+                messages: [],
+              });
+            }
+          });
+        }
       };
 
       state.socket.onmessage = function (msg) {
         let data = JSON.parse(msg.data);
         let session = state.sessions.find((s) => s.user.name === data.from);
+
+        // if session not found, create new session for the sender.
         if (!session) {
           const id = state.sessions.length + 1;
           state.sessions.push({
@@ -49,6 +60,11 @@ const mutations = {
           });
           session = state.sessions.find((s) => s.id === id);
         }
+        // if sender leaves the chat, remove the session.
+        if (session && data.content.includes("left the group")) {
+          state.sessions = state.sessions.filter((s) => s.id !== session.id);
+        }
+        // if sender sends a message, add the message to the session.
         if (!data.content.includes("joined the group")) {
           session.messages.push({
             content: data.content,
@@ -96,8 +112,9 @@ const mutations = {
 };
 
 const actions = {
-  initData({ commit }, username) {
-    commit("INIT_DATA", username);
+  async initData({ commit }, username) {
+    const response = await axios.get("http://localhost:8080/api/users");
+    commit("INIT_DATA", { username, onlineUsers: response.data });
   },
   sendMessage({ commit }, content) {
     commit("SEND_MESSAGE", content);
