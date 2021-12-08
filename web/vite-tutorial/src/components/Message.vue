@@ -25,8 +25,10 @@ import { mapState } from "vuex";
 export default {
   computed: mapState({
     user: (state) => state.user,
-    session: ({ sessions, currentSessionId }) =>
-      sessions.find((s) => s.id === currentSessionId),
+    session: ({ sessions, currentSessionId }) => {
+      let session = sessions.find((s) => s.id === currentSessionId);
+      return session? session: { messages: [] };
+    }
   }),
   methods: {
     newTime(date) {

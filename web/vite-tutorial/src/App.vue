@@ -14,15 +14,29 @@ export default {
     Text,
     Message,
   },
-  methods: mapActions(["initData"]),
-  created() {
-    this.initData();
+  methods: {
+    ...mapActions(["initData", "closeSocket"]),
+    onClick(username) {
+      this.username = username;
+      this.initData(this.username);
+      this.seen = true;
+    }
+  },
+  data() {
+    return {
+      username: "",
+      seen: false,
+    }
   },
 };
 </script>
 
 <template>
-  <div id="app">
+  <div>
+    <input v-model="username"/>
+    <button @click="onClick(username)">Submit</button>
+  </div>
+  <div id="app" v-if="seen">
     <div class="sidebar">
       <Card />
       <List />

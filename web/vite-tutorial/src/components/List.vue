@@ -32,7 +32,9 @@ export default {
     },
     currentId: ({ currentSessionId }) => currentSessionId,
   }),
-  methods: mapActions(["selectSession"]),
+  methods: {
+    ...mapActions(["selectSession"]),
+  },
 };
 </script>
 
