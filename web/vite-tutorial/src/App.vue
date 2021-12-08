@@ -5,7 +5,8 @@ import Card from "./components/Card.vue";
 import List from "./components/List.vue";
 import Text from "./components/Text.vue";
 import Message from "./components/Message.vue";
-import { mapActions } from "vuex";
+import Login from './components/Login.vue';
+import { mapActions, mapState } from "vuex";
 
 export default {
   components: {
@@ -13,28 +14,19 @@ export default {
     List,
     Text,
     Message,
+    Login,
   },
   methods: {
     ...mapActions(["initData", "closeSocket"]),
-    onClick(username) {
-      if (username.length > 0) {
-        this.username = username;
-        this.initData(this.username);
-        this.seen = true;
-      }
-    },
   },
-  data() {
-    return {
-      username: "",
-      seen: false,
-    };
-  },
+  computed: {
+    ...mapState(["user"]),
+  }
 };
 </script>
 
 <template>
-  <div id="app" v-if="seen">
+  <div id="app" v-if="user.name">
     <div class="sidebar">
       <Card />
       <List />
@@ -44,9 +36,8 @@ export default {
       <Text />
     </div>
   </div>
-  <div v-else>
-    <input class="main" v-model="username" />
-    <button @click="onClick(username)">Submit</button>
+  <div id="app" v-else>
+    <Login />
   </div>
 </template>
 
