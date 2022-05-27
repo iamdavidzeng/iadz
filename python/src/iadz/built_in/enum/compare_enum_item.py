@@ -73,11 +73,11 @@ class TransactionCategory(Category):
 
 
 if __name__ == "__main__":
-    categorys = [
+    categories = [
         TransactionCategory.DAMAGE,
         TransactionCategory.OTHER,
         TransactionCategory.RENT,
         TransactionCategory.DAMAGE,
         TransactionCategory.ADDITIONAL_FEE,
     ]
-    print(sorted(categorys))
+    print(sorted(categories))
